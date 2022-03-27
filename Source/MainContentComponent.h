@@ -30,7 +30,7 @@ public:
         orangeContent.setColour (juce::TextButton::buttonColourId, juce::Colours::orange);
         addAndMakeVisible (orangeContent);
 
-        // setSize (400, 400);
+         setSize (400, 400);
     }
 
     void paint (juce::Graphics& g) override
