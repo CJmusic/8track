@@ -1,8 +1,12 @@
 #include "MainComponent.h"
-
+#include "MainContentComponent.h"
 //==============================================================================
 MainComponent::MainComponent()
 {
+
+    MainContentComponent();
+    
+
     // Make sure you set the size of the component after
     // you add any child components.
     setSize (800, 600);

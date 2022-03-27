@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../SimpleEQ"
+		},
+		{
+			"path": "../JUCE Tutorials"
+		}
+	],
+	"settings": {}
+}
