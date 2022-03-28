@@ -264,15 +264,13 @@ void volumeSlider::paint(juce::Graphics &g)
     
     Rectangle<float> thumb;
     
-    
-    Rectangle<float> r;
-    r.setLeft(center.getX() - thumbWidth/2);
-    r.setRight(center.getX() + thumbWidth/2);
-    r.setTop(bounds.getY() + thumbHeight);
-    r.setBottom(center.getY() - thumbHeight);
-    r.setCentre(center.getX(), sliderBounds.getY() - value*22 + 235);
-    g.setColour(Colours::red);
-    g.fillRect(r);
+    thumb.setLeft(center.getX() - thumbWidth/2);
+    thumb.setRight(center.getX() + thumbWidth/2);
+    thumb.setTop(bounds.getY() + thumbHeight);
+    thumb.setBottom(center.getY() - thumbHeight);
+    thumb.setCentre(center.getX(), sliderBounds.getY() - value*22 + 235);
+    g.setColour(Colours::black);
+    g.fillRect(thumb);
 
 }
 
