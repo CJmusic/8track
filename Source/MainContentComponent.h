@@ -6,15 +6,15 @@
 
 struct  otherLookAndFeel : juce::LookAndFeel_V4
 {
-//  void drawRotarySlider (juce::Graphics&,
-//             s                     int x,
-//                                  int y,
-//                                  int width,
-//                                  int height,
-//                                  float sliderPosProportional,
-//                                  float rotaryStartAngle,
-//                                  float rotaryEndAngle,
-//                                  juce::Slider&) override;
+  void drawRotarySlider (juce::Graphics&,
+                                  int x,
+                                  int y,
+                                  int width,
+                                  int height,
+                                  float sliderPosProportional,
+                                  float rotaryStartAngle,
+                                  float rotaryEndAngle,
+                                  juce::Slider&) override;
 
     void     drawLinearSlider (juce::Graphics&,
                                int x,
@@ -30,17 +30,17 @@ struct  otherLookAndFeel : juce::LookAndFeel_V4
 };
 
 
-struct volumeSlider : juce::Slider
+struct RotarySliderWithLabels : juce::Slider
 {
-//  volumeSlider(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) : juce::Slider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox),
+//  RotarySliderWithLabels(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) : juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag, juce::Slider::TextEntryBoxPosition::NoTextBox),
 //  param(&rap),
 //  suffix(unitSuffix)
-    volumeSlider()
+    RotarySliderWithLabels()
   {
     setLookAndFeel(&lnf);
   }
 
-  ~volumeSlider() 
+  ~RotarySliderWithLabels()
   {
       setLookAndFeel(nullptr);
   }
@@ -66,6 +66,45 @@ private:
   juce::String suffix;
 
 
+
+
+};
+
+
+struct volumeSlider : juce::Slider
+{
+//  volumeSlider(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) : juce::Slider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox),
+//  param(&rap),
+//  suffix(unitSuffix)
+    volumeSlider()
+  {
+    setLookAndFeel(&lnf);
+  }
+
+  ~volumeSlider()
+  {
+      setLookAndFeel(nullptr);
+  }
+
+  struct LabelPos
+  {
+      float pos;
+      juce::String label;
+  };
+
+  juce::Array<LabelPos> labels;
+
+  void paint(juce::Graphics& g) override;
+  juce::Rectangle<int> getSliderBounds() const;
+  int getTextHeight() const { return 14; }
+  juce::String getDisplayString() const;
+
+private:
+  otherLookAndFeel lnf;
+
+
+  juce::RangedAudioParameter* param;
+  juce::String suffix;
 
 
 };
@@ -133,7 +172,9 @@ public:
 
         
         addAndMakeVisible (slider1);
-//        slider1.setSliderStyle(juce::Slider::LinearVertical);
+        slider1.setSliderStyle(juce::Slider::LinearVertical);
+        
+        addAndMakeVisible(knob1);
         
 
          setSize (1200, 820);
@@ -159,6 +200,10 @@ public:
         track1.setBounds (track1Bounds);
         auto fader1Bounds = track1Bounds.removeFromBottom  (250);
         slider1.setBounds(fader1Bounds);
+        
+        
+        
+        knob1.setBounds(track1Bounds);
 
         track2.setBounds (area.removeFromLeft (trackWidth));
         track3.setBounds (area.removeFromLeft (trackWidth));
@@ -189,6 +234,7 @@ private:
     
 //    juce::Slider slider1;
     volumeSlider slider1;
+    RotarySliderWithLabels knob1;
 
     juce::TextButton track1;
     juce::TextButton track2;
