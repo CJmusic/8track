@@ -211,13 +211,12 @@ void otherLookAndFeel::drawLinearSlider(juce::Graphics&g,
 
     auto bounds = Rectangle<float>(x, y, width, height);
     auto center = bounds.getCentre();
-    Path p;
-
+    
 //    Rectangle<float> r;
 //    r.setLeft(center.getX() - 2);
 //    r.setRight(center.getX() + 2);
 //    r.setTop(bounds.getY());
-//    g.setColour(Colours::black);
+//    g.setColour(Colours::red);
 //    g.fillRect(r);
 
     
@@ -231,10 +230,16 @@ void volumeSlider::paint(juce::Graphics &g)
     auto range = getRange();
     auto bounds = getLocalBounds();
     auto sliderBounds = getSliderBounds();
+    auto value = getValue();
+    
+//    auto sliderPos =
+    // need to make a sliderPos variable, which normalizes
+    // value into something to do with the bounds
+    // it can't change the positions of the
     
     
-     g.setColour(Colours::red);
-     g.drawRect(getLocalBounds());
+//     g.setColour(Colours::red);
+//     g.drawRect(getLocalBounds());
      g.setColour(Colours::black);
      g.drawRect(sliderBounds);
      g.fillRect(sliderBounds);
@@ -250,42 +255,24 @@ void volumeSlider::paint(juce::Graphics &g)
                       1.0,
                       juce::Slider::LinearVertical,
                                       *this);
-//
+
     auto center = sliderBounds.toFloat().getCentre();
     auto radius = sliderBounds.getWidth() * 0.5f;
 
-    g.setColour(Colour(0u, 172u, 1u));
-    g.setFont(getTextHeight());
-
-    auto thumbWidth = bounds.getWidth();//getSliderThumbRadius(*this);
-    auto thumbHeight = bounds.getHeight()/20;
+    auto thumbWidth = bounds.getWidth() - 10;//getSliderThumbRadius(*this);
+    auto thumbHeight = bounds.getHeight()/5;
     
     Rectangle<float> thumb;
     
-    g.setColour(Colours::grey);
-    g.drawRect(bounds);
     
-    //
-//    auto numChoices = labels.size();
-//    for( int i = 0; i < numChoices; ++i )
-//    {
-//      auto pos = labels[i].pos;
-//      jassert(0.f <= pos);
-//      jassert(pos <= 1.f);
-//
-//        auto ang = 0;//jmap(pos, 0.f, 1.f, startAng, endAng);
-//
-//      auto c = center.getPointOnCircumference(radius + getTextHeight()* 0.5f + 1, ang);
-//
-//      Rectangle<float> r;
-//      auto str = labels[i].label;
-//      r.setSize(g.getCurrentFont().getStringWidth(str), getTextHeight());
-//      r.setCentre(c);
-//      r.setY(r.getY() + getTextHeight());
-//
-//      g.drawFittedText(str, r.toNearestInt(), juce::Justification::centred, 1);
-//
-//    }
+    Rectangle<float> r;
+    r.setLeft(center.getX() - thumbWidth/2);
+    r.setRight(center.getX() + thumbWidth/2);
+    r.setTop(bounds.getY() + thumbHeight);
+    r.setBottom(center.getY() - thumbHeight);
+    r.setCentre(center.getX(), sliderBounds.getY() - value*22 + 235);
+    g.setColour(Colours::red);
+    g.fillRect(r);
 
 }
 
