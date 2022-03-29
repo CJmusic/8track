@@ -141,9 +141,46 @@ public:
         addAndMakeVisible (slider1);
         slider1.setSliderStyle(juce::Slider::LinearVertical);
         
-        addAndMakeVisible(knob1);
-        knob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+//        addAndMakeVisible(knob1);
+//        knob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
 
+        volumeSlider slider1;
+        addAndMakeVisible(lowFreqKnob1);
+        lowFreqKnob1.setSliderStyle(juce::Slider::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(lowGainKnob1);
+        lowGainKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(lowmidFreqKnob1);
+        lowmidFreqKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(lowmidQKnob1);
+        lowmidQKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(lowmidGainKnob1);
+        lowmidGainKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(highmidFreqKnob1);
+        highmidFreqKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(highmidQKnob1);
+        highmidQKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(highmidGainKnob1);
+        highmidGainKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(highFreqKnob1);
+        highFreqKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(highGainKnob1);
+        highGainKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(HPKnob1);
+        HPKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(LPKnob1);
+        LPKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(ThresholdKnob1);
+        ThresholdKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(MakeupGainKnob1);
+        MakeupGainKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(ReleaseKnob1);
+        ReleaseKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        addAndMakeVisible(RatioKnob1);
+        RatioKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        
+        addAndMakeVisible(AutoGain1);
+        
+        
         addAndMakeVisible(arm1);
         addAndMakeVisible(mute1);
         addAndMakeVisible(solo1);
@@ -204,9 +241,9 @@ public:
         auto trackWidth = 110;
         auto trackHeight = getHeight() - 36*2;
         
-        auto track1Bounds = area.removeFromLeft (trackWidth);
+        auto track1Bounds = area.removeFromLeft(trackWidth);
         track1.setBounds (track1Bounds);
-        auto fader1Bounds = track1Bounds.removeFromBottom  (250);
+        auto fader1Bounds = track1Bounds.removeFromBottom(250);
         slider1.setBounds(fader1Bounds);
         slider1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
@@ -218,10 +255,57 @@ public:
         mute1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
         solo1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
 
+        lowFreqKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromLeft(trackWidth/2));
+        lowFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
         
-     
-        knob1.setBounds(track1Bounds.removeFromBottom(trackHeight/10).removeFromLeft(trackWidth));
-        knob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+        lowGainKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
+        lowGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        lowmidFreqKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromLeft(trackWidth/2));
+        lowmidFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        lowmidQKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
+        lowmidQKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        lowmidGainKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromLeft(trackWidth/2));
+        lowmidGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        highmidFreqKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
+        highmidFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        highmidQKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromLeft(trackWidth/2));
+        highmidQKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        highmidGainKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
+        highmidGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        highFreqKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromLeft(trackWidth/2));
+        highFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        highGainKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
+        highGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        HPKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromLeft(trackWidth/2));
+        HPKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        LPKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
+        LPKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        ThresholdKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromLeft(trackWidth/2));
+        ThresholdKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        MakeupGainKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
+        MakeupGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        ReleaseKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromLeft(trackWidth/2));
+        ReleaseKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+        RatioKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
+        RatioKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
+    
+//        knob1.setBounds(track1Bounds.removeFromBottom(trackHeight/10).removeFromLeft(trackWidth/1.5));
+//        knob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
         
         track2.setBounds (area.removeFromLeft (trackWidth));
         track3.setBounds (area.removeFromLeft (trackWidth));
@@ -252,7 +336,25 @@ private:
     
 //    juce::Slider slider1;
     volumeSlider slider1;
-    RotarySliderWithLabels knob1;
+    RotarySliderWithLabels lowFreqKnob1;
+    RotarySliderWithLabels lowGainKnob1;
+    RotarySliderWithLabels lowmidFreqKnob1;
+    RotarySliderWithLabels lowmidQKnob1;
+    RotarySliderWithLabels lowmidGainKnob1;
+    RotarySliderWithLabels highmidFreqKnob1;
+    RotarySliderWithLabels highmidQKnob1;
+    RotarySliderWithLabels highmidGainKnob1;
+    RotarySliderWithLabels highFreqKnob1;
+    RotarySliderWithLabels highGainKnob1;
+    RotarySliderWithLabels HPKnob1;
+    RotarySliderWithLabels LPKnob1;
+    RotarySliderWithLabels ThresholdKnob1;
+    RotarySliderWithLabels MakeupGainKnob1;
+    RotarySliderWithLabels ReleaseKnob1;
+    RotarySliderWithLabels RatioKnob1;
+    juce::TextButton AutoGain1;
+
+    
     juce::TextButton arm1;
     juce::TextButton mute1;
     juce::TextButton solo1;
