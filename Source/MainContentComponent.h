@@ -136,6 +136,19 @@ public:
         track1.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
         track1.setButtonText ("track1");
         addAndMakeVisible (track1);
+        
+        
+        addAndMakeVisible (slider1);
+        slider1.setSliderStyle(juce::Slider::LinearVertical);
+        
+        addAndMakeVisible(knob1);
+        knob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+
+        addAndMakeVisible(arm1);
+        addAndMakeVisible(mute1);
+        addAndMakeVisible(solo1);
+        
+        
 
         track2.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
         track2.setButtonText ("track2");
@@ -171,11 +184,6 @@ public:
         addAndMakeVisible (mainArea);
 
         
-        addAndMakeVisible (slider1);
-        slider1.setSliderStyle(juce::Slider::LinearVertical);
-        
-        addAndMakeVisible(knob1);
-        
 
          setSize (1200, 820);
     }
@@ -200,11 +208,21 @@ public:
         track1.setBounds (track1Bounds);
         auto fader1Bounds = track1Bounds.removeFromBottom  (250);
         slider1.setBounds(fader1Bounds);
-        
-        
-        
-        knob1.setBounds(track1Bounds);
+        slider1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
+        
+        
+        track1Bounds.removeFromBottom(10);
+        auto buttons1Bounds = track1Bounds.removeFromBottom(30);
+        arm1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
+        mute1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
+        solo1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
+
+        
+     
+        knob1.setBounds(track1Bounds.removeFromBottom(trackHeight/10).removeFromLeft(trackWidth));
+        knob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+        
         track2.setBounds (area.removeFromLeft (trackWidth));
         track3.setBounds (area.removeFromLeft (trackWidth));
         track4.setBounds (area.removeFromLeft (trackWidth));
@@ -235,7 +253,10 @@ private:
 //    juce::Slider slider1;
     volumeSlider slider1;
     RotarySliderWithLabels knob1;
-
+    juce::TextButton arm1;
+    juce::TextButton mute1;
+    juce::TextButton solo1;
+    
     juce::TextButton track1;
     juce::TextButton track2;
     juce::TextButton track3;
