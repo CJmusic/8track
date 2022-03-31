@@ -51,11 +51,47 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
     // Your audio-processing code goes here!
 
     // For more details, see the help for AudioProcessor::getNextAudioBlock()
+    auto* device = deviceManager.getCurrentAudioDevice();
+    auto activeInputChannels = device->getActiveInputChannels();
+    auto activeOutputChannels = device->getActiveOutputChannels();
+    
+    auto maxInputChannels  = activeInputChannels .getHighestBit() + 1;
+    auto maxOutputChannels = activeOutputChannels.getHighestBit() + 1;
+    
+    
+    auto level = 1.0;//(float) volumeSlider.getValue(); // not sure if this is volumeSlider appropriate
+    
+    
+    for (auto channel = 0; channel < maxOutputChannels; ++channel)
+    {
+        if ((! activeOutputChannels[channel]) || maxInputChannels == 0)
+        {
+            bufferToFill.buffer->clear( channel, bufferToFill.startSample, bufferToFill.numSamples);
+        }
+        else
+        {
+            auto actualInputChannel = channel % maxInputChannels; // [1]
+            
+            if (! activeInputChannels[channel]) // [2]
+            {
+                bufferToFill.buffer->clear (channel, bufferToFill.startSample, bufferToFill.numSamples);
+            }
+            else // [3]
+            {
+                auto* inBuffer = bufferToFill.buffer->getReadPointer (actualInputChannel,
+                                                                      bufferToFill.startSample);
+                auto* outBuffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
 
+                for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
+                    outBuffer[sample] = inBuffer[sample];// * random.nextFloat() * level;
+            }
+        }
+    }
+}
     // Right now we are not producing any data, in which case we need to clear the buffer
     // (to prevent the output of random noise)
-    bufferToFill.clearActiveBufferRegion();
-}
+//    bufferToFill.clearActiveBufferRegion();
+
 
 void MainComponent::releaseResources()
 {
