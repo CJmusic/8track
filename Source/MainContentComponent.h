@@ -255,10 +255,10 @@ public:
         solo1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
         
         
-        auto knob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
-        knob1Bounds.setY(knob1Bounds.getY() - knob1Bounds.getHeight());
-        knob1Bounds.setHeight(2*knob1Bounds.getHeight());
-        lowFreqKnob1.setBounds(knob1Bounds);
+        auto lowFreqKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+        lowFreqKnob1Bounds.setY(lowFreqKnob1Bounds.getY() - lowFreqKnob1Bounds.getHeight());
+        lowFreqKnob1Bounds.setHeight(2*lowFreqKnob1Bounds.getHeight());
+        lowFreqKnob1.setBounds(lowFreqKnob1Bounds);
         lowFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
         
         lowGainKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
