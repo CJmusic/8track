@@ -20,12 +20,12 @@ void otherLookAndFeel::drawRotarySlider(juce::Graphics & g,
   using namespace juce;
 
   auto bounds = Rectangle<float>(x, y, width, height);
-
-  g.setColour(Colour(97u, 18u, 167u));
+  
+  g.setColour(Colour(juce::Colours::red));
   g.fillEllipse(bounds);
-
-  g.setColour(Colour(255u, 154u, 1u));
-  g.drawEllipse(bounds, 1.f);
+    
+  g.setColour(Colour(juce::Colours::lightgrey));
+  g.drawEllipse(bounds, 5.f);
 
   if( auto* rswl = dynamic_cast<RotarySliderWithLabels*>(&slider))
   {
@@ -36,7 +36,8 @@ void otherLookAndFeel::drawRotarySlider(juce::Graphics & g,
     r.setLeft(center.getX() - 2);
     r.setRight(center.getX() + 2);
     r.setTop(bounds.getY());
-    r.setBottom(center.getY() - rswl->getTextHeight() * 1.5);
+      r.setBottom(center.getY() - 4);
+//    r.setBottom(center.getY() - rswl->getTextHeight() * 1.5);
 
     p.addRoundedRectangle(r,2.f);
       
@@ -55,11 +56,11 @@ void otherLookAndFeel::drawRotarySlider(juce::Graphics & g,
     r.setSize(strWidth + 4, rswl->getTextHeight() + 2);
     r.setCentre(bounds.getCentre());
 
-    g.setColour(Colours::black);
-    g.fillRect(r);
-
-    g.setColour(Colours::white);
-    g.drawFittedText(text, r.toNearestInt(), juce::Justification::centred,1);
+//    g.setColour(Colours::black);
+//    g.fillRect(r);
+//
+//    g.setColour(Colours::white);
+//    g.drawFittedText(text, r.toNearestInt(), juce::Justification::centred,1);
 
 
   }
@@ -102,9 +103,11 @@ void RotarySliderWithLabels::paint(juce::Graphics &g)
 
     
     //DEBUGGING - Draw boxes around Knobs
-   g.setColour(Colours::red);
-   g.drawRect(getLocalBounds());
+//   g.setColour(Colours::red);
+//   g.drawRect(getLocalBounds());
     //DEBUGGING ENDS
+    
+    
 //   g.setColour(Colours::yellow);
 //   g.drawRect(sliderBounds);
 
@@ -153,7 +156,7 @@ juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
   auto bounds = getLocalBounds();
   auto size = juce::jmin(bounds.getWidth(), bounds.getHeight());
 
-//  size -= getTextHeight() * 2;
+    size /= 1.5;
 
   juce::Rectangle<int> r;
   r.setSize(size, size);
