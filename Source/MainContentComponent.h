@@ -134,8 +134,8 @@ public:
         addAndMakeVisible (footer);
 
         track1.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-        track1.setButtonText ("track1");
-        addAndMakeVisible (track1);
+//        track1.setButtonText ("track1");
+//        addAndMakeVisible (track1);
         
         
         addAndMakeVisible (slider1);
@@ -179,6 +179,7 @@ public:
         RatioKnob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
         
         addAndMakeVisible(AutoGain1);
+        addAndMakeVisible(InputSelector1);
         
         
         addAndMakeVisible(arm1);
@@ -353,6 +354,13 @@ public:
         RatioKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
     
+        auto AutoGain1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+//        AutoGain1Bounds.setY(AutoGain1Bounds.getY() - AutoGain1Bounds.getHeight());
+//        AutoGain1Bounds.setHeight(2*AutoGain1Bounds.getHeight());
+        AutoGain1.setBounds(AutoGain1Bounds);
+
+        auto InputSelector1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20);
+        InputSelector1.setBounds(InputSelector1Bounds);
 //        knob1.setBounds(track1Bounds.removeFromBottom(trackHeight/10).removeFromLeft(trackWidth/1.5));
 //        knob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
         
@@ -402,7 +410,7 @@ private:
     RotarySliderWithLabels ReleaseKnob1;
     RotarySliderWithLabels RatioKnob1;
     juce::TextButton AutoGain1;
-
+    juce::ComboBox InputSelector1;
     
     juce::TextButton arm1;
     juce::TextButton mute1;
