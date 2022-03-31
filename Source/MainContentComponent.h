@@ -220,7 +220,6 @@ public:
         mainArea.setButtonText ("mainArea");
         addAndMakeVisible (mainArea);
 
-        
 
          setSize (1200, 820);
     }
@@ -254,8 +253,12 @@ public:
         arm1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
         mute1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
         solo1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
-
-        lowFreqKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromLeft(trackWidth/2));
+        
+        
+        auto knob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+        knob1Bounds.setY(knob1Bounds.getY() - knob1Bounds.getHeight());
+        knob1Bounds.setHeight(2*knob1Bounds.getHeight());
+        lowFreqKnob1.setBounds(knob1Bounds);
         lowFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
         
         lowGainKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
