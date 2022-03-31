@@ -261,6 +261,7 @@ public:
         lowFreqKnob1.setBounds(lowFreqKnob1Bounds);
         lowFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
         
+        
         lowGainKnob1.setBounds(track1Bounds.removeFromBottom((trackHeight -250)/20).removeFromRight(trackWidth/2));
         lowGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 

@@ -97,6 +97,8 @@ void RotarySliderWithLabels::paint(juce::Graphics &g)
   auto range = getRange();
   
   auto sliderBounds = getSliderBounds();
+//    auto sliderBounds = getLocalBounds();
+
 
     
     //DEBUGGING - Draw boxes around Knobs
@@ -151,12 +153,12 @@ juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
   auto bounds = getLocalBounds();
   auto size = juce::jmin(bounds.getWidth(), bounds.getHeight());
 
-  size -= getTextHeight() * 2;
+//  size -= getTextHeight() * 2;
 
   juce::Rectangle<int> r;
   r.setSize(size, size);
-  r.setCentre(bounds.getCentreX(), 0);
-  r.setY(2);
+  r.setCentre(bounds.getCentreX(), bounds.getCentreY());
+//  r.setY(2);
 
   return r;
 
