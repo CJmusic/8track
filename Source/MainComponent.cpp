@@ -59,7 +59,9 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
     auto maxOutputChannels = activeOutputChannels.getHighestBit() + 1;
     
     
-    auto level = 1.0;//(float) volumeSlider.getValue(); // not sure if this is volumeSlider appropriate
+//    auto level =  MainComponent::content::volumeSlider.getValue(); // not sure if this is volumeSlider appropriate
+    auto level =  1.0;
+
     
     
     for (auto channel = 0; channel < maxOutputChannels; ++channel)
