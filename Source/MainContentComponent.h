@@ -115,10 +115,9 @@ private:
 class MainContentComponent   : public juce::Component
 {
 public:
-    MainContentComponent() //: slider1()
+    MainContentComponent()
     {
         
-
 //        slider1();
 //        otherLookAndFeel.setColour (juce::Slider::thumbColourId, juce::Colours::red);
 //        slider1.setLookAndFeel(&otherLookAndFeel);
@@ -384,7 +383,7 @@ public:
 
 private:
 //    juce::Rectangle track1bounds;
-    
+
     juce::LookAndFeel_V4 otherLookAndFeel;
     
     juce::TextButton header;

@@ -1,14 +1,22 @@
 #include "MainComponent.h"
 #include "MainContentComponent.h"
 //==============================================================================
-MainComponent::MainComponent()
+MainComponent::MainComponent() : audioSetupComp(deviceManager,
+                                                0,
+                                                256,
+                                                0,
+                                                256,
+                                                false,
+                                                false,
+                                                false,
+                                                false)
 {
-
+    
 //    MainContentComponent content = MainContentComponent();
 //    juce::Component content = MainContentComponent::MainContentComponent();
 //    addAndMakeVisible(header);
     addAndMakeVisible(content);
-
+    addAndMakeVisible(audioSetupComp);
     // Make sure you set the size of the component after
     // you add any child components.
     setSize (800, 600);
@@ -26,6 +34,8 @@ MainComponent::MainComponent()
         // Specify the number of input and output channels that we want to open
         setAudioChannels (2, 2);
     }
+    
+
 }
 
 MainComponent::~MainComponent()
@@ -122,10 +132,12 @@ void MainComponent::resized()
     // If you add any child components, this is where you should
     // update their positions.
     
-//    auto area = getLocalBounds();
+    auto area = getLocalBounds();
+    audioSetupComp.setBounds( area.removeFromRight(500));
 //
 //    auto headerFooterHeight = 100;
 //    header.setBounds (area.removeFromTop    (headerFooterHeight));
 //    footer.setBounds (area.removeFromBottom (headerFooterHeight));
+    
 
 }

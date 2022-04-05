@@ -29,6 +29,8 @@ private:
     //==============================================================================
     // Your private member variables go here...
 //    juce::TextButton header;
+    juce::AudioDeviceSelectorComponent audioSetupComp;
+
     MainContentComponent content;
 
 
