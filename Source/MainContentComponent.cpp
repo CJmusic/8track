@@ -75,7 +75,8 @@ void Track::resized()
     slider1.setBounds(fader1Bounds);
     slider1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    
+    auto knobWidth  = trackWidth/2;
+    auto knobHeight = (trackHeight-250)/18;
     
     track1Bounds.removeFromBottom(10);
     auto buttons1Bounds = track1Bounds.removeFromBottom(30);
@@ -84,110 +85,110 @@ void Track::resized()
     solo1.setBounds(buttons1Bounds.removeFromLeft(trackWidth/3));
     
     
-    auto lowFreqKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+    auto lowFreqKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromLeft(knobWidth);
     lowFreqKnob1Bounds.setY(lowFreqKnob1Bounds.getY() - lowFreqKnob1Bounds.getHeight());
     lowFreqKnob1Bounds.setHeight(2*lowFreqKnob1Bounds.getHeight());
     lowFreqKnob1.setBounds(lowFreqKnob1Bounds);
     lowFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
     
     
-    auto lowGainKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromRight(trackWidth/2);
+    auto lowGainKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromRight(knobWidth);
     lowGainKnob1Bounds.setY(lowGainKnob1Bounds.getY() - lowGainKnob1Bounds.getHeight());
     lowGainKnob1Bounds.setHeight(2*lowGainKnob1Bounds.getHeight());
     lowGainKnob1.setBounds(lowGainKnob1Bounds);
     lowGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
     
-    auto lowmidFreqKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+    auto lowmidFreqKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromLeft(knobWidth);
     lowmidFreqKnob1Bounds.setY(lowmidFreqKnob1Bounds.getY() - lowmidFreqKnob1Bounds.getHeight());
     lowmidFreqKnob1Bounds.setHeight(2*lowmidFreqKnob1Bounds.getHeight());
     lowmidFreqKnob1.setBounds(lowmidFreqKnob1Bounds);
     lowmidFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto lowmidQKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromRight(trackWidth/2);
+    auto lowmidQKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromRight(knobWidth);
     lowmidQKnob1Bounds.setY(lowmidQKnob1Bounds.getY() - lowmidQKnob1Bounds.getHeight());
     lowmidQKnob1Bounds.setHeight(2*lowmidQKnob1Bounds.getHeight());
     lowmidQKnob1.setBounds(lowmidQKnob1Bounds);
     lowmidQKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto lowmidGainKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+    auto lowmidGainKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromLeft(knobWidth);
     lowmidGainKnob1Bounds.setY(lowmidGainKnob1Bounds.getY() - lowmidGainKnob1Bounds.getHeight());
     lowmidGainKnob1Bounds.setHeight(2*lowmidGainKnob1Bounds.getHeight());
     lowmidGainKnob1.setBounds(lowmidGainKnob1Bounds);
     lowmidGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto highmidFreqKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromRight(trackWidth/2);
+    auto highmidFreqKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromRight(knobWidth);
     highmidFreqKnob1Bounds.setY(highmidFreqKnob1Bounds.getY() - highmidFreqKnob1Bounds.getHeight());
     highmidFreqKnob1Bounds.setHeight(2*highmidFreqKnob1Bounds.getHeight());
     highmidFreqKnob1.setBounds(highmidFreqKnob1Bounds);
     highmidFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto highmidQKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+    auto highmidQKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromLeft(knobWidth);
     highmidQKnob1Bounds.setY(highmidQKnob1Bounds.getY() - highmidQKnob1Bounds.getHeight());
     highmidQKnob1Bounds.setHeight(2*highmidQKnob1Bounds.getHeight());
     highmidQKnob1.setBounds(highmidQKnob1Bounds);
     highmidQKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto highmidGainKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromRight(trackWidth/2);
+    auto highmidGainKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromRight(knobWidth);
     highmidGainKnob1Bounds.setY(highmidGainKnob1Bounds.getY() - highmidGainKnob1Bounds.getHeight());
     highmidGainKnob1Bounds.setHeight(2*highmidGainKnob1Bounds.getHeight());
     highmidGainKnob1.setBounds(highmidGainKnob1Bounds);
     highmidGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto highFreqKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+    auto highFreqKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromLeft(knobWidth);
     highFreqKnob1Bounds.setY(highFreqKnob1Bounds.getY() - highFreqKnob1Bounds.getHeight());
     highFreqKnob1Bounds.setHeight(2*highFreqKnob1Bounds.getHeight());
     highFreqKnob1.setBounds(highFreqKnob1Bounds);
     highFreqKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto highGainKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromRight(trackWidth/2);
+    auto highGainKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromRight(knobWidth);
     highGainKnob1Bounds.setY(highGainKnob1Bounds.getY() - highGainKnob1Bounds.getHeight());
     highGainKnob1Bounds.setHeight(2*highGainKnob1Bounds.getHeight());
     highGainKnob1.setBounds(highGainKnob1Bounds);
     highGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto HPKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+    auto HPKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromLeft(knobWidth);
     HPKnob1Bounds.setY(HPKnob1Bounds.getY() - HPKnob1Bounds.getHeight());
     HPKnob1Bounds.setHeight(2*HPKnob1Bounds.getHeight());
     HPKnob1.setBounds(HPKnob1Bounds);
     HPKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto LPKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromRight(trackWidth/2);
+    auto LPKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromRight(knobWidth);
     LPKnob1Bounds.setY(LPKnob1Bounds.getY() - LPKnob1Bounds.getHeight());
     LPKnob1Bounds.setHeight(2*LPKnob1Bounds.getHeight());
     LPKnob1.setBounds(LPKnob1Bounds);
     LPKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto ThresholdKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+    auto ThresholdKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromLeft(knobWidth);
     ThresholdKnob1Bounds.setY(ThresholdKnob1Bounds.getY() - ThresholdKnob1Bounds.getHeight());
     ThresholdKnob1Bounds.setHeight(2*ThresholdKnob1Bounds.getHeight());
     ThresholdKnob1.setBounds(ThresholdKnob1Bounds);
     ThresholdKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto MakeupGainKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromRight(trackWidth/2);
+    auto MakeupGainKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromRight(knobWidth);
     MakeupGainKnob1Bounds.setY(MakeupGainKnob1Bounds.getY() - MakeupGainKnob1Bounds.getHeight());
     MakeupGainKnob1Bounds.setHeight(2*MakeupGainKnob1Bounds.getHeight());
     MakeupGainKnob1.setBounds(MakeupGainKnob1Bounds);
     MakeupGainKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto ReleaseKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+    auto ReleaseKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromLeft(knobWidth);
     ReleaseKnob1Bounds.setY(ReleaseKnob1Bounds.getY() - ReleaseKnob1Bounds.getHeight());
     ReleaseKnob1Bounds.setHeight(2*ReleaseKnob1Bounds.getHeight());
     ReleaseKnob1.setBounds(ReleaseKnob1Bounds);
     ReleaseKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
-    auto RatioKnob1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromRight(trackWidth/2);
+    auto RatioKnob1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromRight(knobWidth);
     RatioKnob1Bounds.setY(RatioKnob1Bounds.getY() - RatioKnob1Bounds.getHeight());
     RatioKnob1Bounds.setHeight(2*RatioKnob1Bounds.getHeight());
     RatioKnob1.setBounds(RatioKnob1Bounds);
     RatioKnob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
 
 
-    auto AutoGain1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20).removeFromLeft(trackWidth/2);
+    auto AutoGain1Bounds = track1Bounds.removeFromBottom(knobHeight).removeFromLeft(knobWidth);
 //        AutoGain1Bounds.setY(AutoGain1Bounds.getY() - AutoGain1Bounds.getHeight());
 //        AutoGain1Bounds.setHeight(2*AutoGain1Bounds.getHeight());
     AutoGain1.setBounds(AutoGain1Bounds);
 
-    auto InputSelector1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20);
+    auto InputSelector1Bounds = track1Bounds.removeFromBottom(knobHeight);
     InputSelector1.setBounds(InputSelector1Bounds);
 };
 
@@ -217,35 +218,13 @@ MainContentComponent::MainContentComponent()
 //        track1.setButtonText ("track1");
 //        addAndMakeVisible (track1);
     
-    addAndMakeVisible(track1);
-    
-
-    track2.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track2.setButtonText ("track2");
+    addAndMakeVisible (track1);
     addAndMakeVisible (track2);
-
-    track3.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track3.setButtonText ("track3");
     addAndMakeVisible (track3);
-    
-    track4.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track4.setButtonText ("track4");
     addAndMakeVisible (track4);
-    
-    track5.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track5.setButtonText ("track5");
     addAndMakeVisible (track5);
-    
-    track6.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track6.setButtonText ("track6");
     addAndMakeVisible (track6);
-    
-    track7.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track7.setButtonText ("track7");
     addAndMakeVisible (track7);
-
-    track8.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track8.setButtonText ("track8");
     addAndMakeVisible (track8);
 
     

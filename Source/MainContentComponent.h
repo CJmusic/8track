@@ -160,6 +160,14 @@ public:
     void settingsButtonPressed(juce::AudioDeviceSelectorComponent audioSetupComp);
     
     Track track1;
+    Track track2;
+    Track track3;
+    Track track4;
+    Track track5;
+    Track track6;
+    Track track7;
+    Track track8;
+
 
 private:
 //    juce::Rectangle track1bounds;
@@ -174,13 +182,13 @@ private:
 //    juce::Slider slider1;
     
 //    juce::TextButton track1;
-    juce::TextButton track2;
-    juce::TextButton track3;
-    juce::TextButton track4;
-    juce::TextButton track5;
-    juce::TextButton track6;
-    juce::TextButton track7;
-    juce::TextButton track8;
+//    juce::TextButton track2;
+//    juce::TextButton track3;
+//    juce::TextButton track4;
+//    juce::TextButton track5;
+//    juce::TextButton track6;
+//    juce::TextButton track7;
+//    juce::TextButton track8;
 
 
     //==============================================================================
