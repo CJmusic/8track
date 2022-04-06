@@ -71,10 +71,10 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
     auto maxOutputChannels = activeOutputChannels.getHighestBit() + 1;
     
     
-//    auto level =  MainComponent::content;
-    
+//    auto level =  MainComponent::MainContentComponent::volumeSlider;
+    auto level = content.slider1.getValue();
 //    volumeSlider.getValue(); // not sure if this is volumeSlider appropriate
-    auto level =  1.0;
+//    auto level =  1.0;
 
     
     
@@ -99,7 +99,7 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
                 auto* outBuffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
 
                 for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
-                    outBuffer[sample] = inBuffer[sample];// * random.nextFloat() * level;
+                    outBuffer[sample] = inBuffer[sample] * level;
             }
         }
     }

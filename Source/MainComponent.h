@@ -24,6 +24,7 @@ public:
     void paint (juce::Graphics& g) override;
     void resized() override;
     
+    MainContentComponent content;
 
 private:
     //==============================================================================
@@ -31,7 +32,6 @@ private:
 //    juce::TextButton header;
     juce::AudioDeviceSelectorComponent audioSetupComp;
 
-    MainContentComponent content;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)

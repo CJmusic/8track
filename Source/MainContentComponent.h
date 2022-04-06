@@ -119,7 +119,10 @@ public:
     ~MainContentComponent();
     void paint (juce::Graphics& g) override;
     void resized() override;
-//    void settingsButtonPressed;
+    void settingsButtonPressed(juce::AudioDeviceSelectorComponent audioSetupComp);
+    
+    volumeSlider slider1;
+
 private:
 //    juce::Rectangle track1bounds;
 
@@ -130,7 +133,6 @@ private:
     juce::TextButton mainArea;
     
 //    juce::Slider slider1;
-    volumeSlider slider1;
     RotarySliderWithLabels lowFreqKnob1;
     RotarySliderWithLabels lowGainKnob1;
     RotarySliderWithLabels lowmidFreqKnob1;

@@ -7,12 +7,6 @@
 
 #include "MainContentComponent.h"
 
-//void MainContentComponent::settingsButtonPressed(juce::AudioDeviceSelectorComponent audioSetupComp)
-//{
-//    addAndMakeVisible(audioSetupComp);
-//
-//}
-
 MainContentComponent::MainContentComponent()
 {
     
@@ -281,6 +275,15 @@ void MainContentComponent::resized()
 //        lemonContent.setBounds      (area.removeFromTop (contentItemHeight));
 //        orangeContent.setBounds     (area.removeFromTop (contentItemHeight));
 }
+
+
+void MainContentComponent::settingsButtonPressed(juce::AudioDeviceSelectorComponent audioSetupComp)
+{
+    addAndMakeVisible(audioSetupComp);
+
+}
+
+
 
 void otherLookAndFeel::drawRotarySlider(juce::Graphics & g,
                                                     int x,
