@@ -7,28 +7,9 @@
 
 #include "MainContentComponent.h"
 
-MainContentComponent::MainContentComponent()
+
+Track::Track()
 {
-    
-//        slider1();
-//        otherLookAndFeel.setColour (juce::Slider::thumbColourId, juce::Colours::red);
-//        slider1.setLookAndFeel(&otherLookAndFeel);
-//        slider1.setLookAndFeel(&otherLookAndFeel);
-
-    
-    header.setColour (juce::TextButton::buttonColourId, juce::Colours::cornflowerblue);
-    header.setButtonText ("Header");
-    addAndMakeVisible (header);
-
-    footer.setColour (juce::TextButton::buttonColourId, juce::Colours::cornflowerblue);
-    footer.setButtonText ("Footer");
-    addAndMakeVisible (footer);
-
-    track1.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-//        track1.setButtonText ("track1");
-//        addAndMakeVisible (track1);
-    
-    
     addAndMakeVisible (slider1);
     slider1.setSliderStyle(juce::Slider::LinearVertical);
     
@@ -77,66 +58,19 @@ MainContentComponent::MainContentComponent()
     addAndMakeVisible(mute1);
     addAndMakeVisible(solo1);
     
-    
-
-    track2.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track2.setButtonText ("track2");
-    addAndMakeVisible (track2);
-
-    track3.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track3.setButtonText ("track3");
-    addAndMakeVisible (track3);
-    
-    track4.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track4.setButtonText ("track4");
-    addAndMakeVisible (track4);
-    
-    track5.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track5.setButtonText ("track5");
-    addAndMakeVisible (track5);
-    
-    track6.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track6.setButtonText ("track6");
-    addAndMakeVisible (track6);
-    
-    track7.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track7.setButtonText ("track7");
-    addAndMakeVisible (track7);
-
-    track8.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    track8.setButtonText ("track8");
-    addAndMakeVisible (track8);
-
-    
-    mainArea.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
-    mainArea.setButtonText ("mainArea");
-    addAndMakeVisible (mainArea);
-
-
-     setSize (1200, 820);
-}
-MainContentComponent::~MainContentComponent()
+};
+Track::~Track()
 {
     
-}
-void MainContentComponent::paint (juce::Graphics& g)
+};
+
+
+void Track::resized()
 {
-    g.fillAll (juce::Colours::darkgrey);
-}
-
-void MainContentComponent::resized() 
-{
-    auto area = getLocalBounds();
-
-    auto headerFooterHeight = 36;
-    header.setBounds (area.removeFromTop    (headerFooterHeight));
-    footer.setBounds (area.removeFromBottom (headerFooterHeight));
-
+    auto track1Bounds = getLocalBounds();
     auto trackWidth = 110;
     auto trackHeight = getHeight() - 36*2;
-    
-    auto track1Bounds = area.removeFromLeft(trackWidth);
-    track1.setBounds (track1Bounds);
+
     auto fader1Bounds = track1Bounds.removeFromBottom(250);
     slider1.setBounds(fader1Bounds);
     slider1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
@@ -255,9 +189,97 @@ void MainContentComponent::resized()
 
     auto InputSelector1Bounds = track1Bounds.removeFromBottom((trackHeight-250)/20);
     InputSelector1.setBounds(InputSelector1Bounds);
+};
+
+void Track::paint(juce::Graphics& g)
+{
+    g.fillAll (juce::Colours::darkgrey);
+}
+
+MainContentComponent::MainContentComponent()
+{
+    
+//        slider1();
+//        otherLookAndFeel.setColour (juce::Slider::thumbColourId, juce::Colours::red);
+//        slider1.setLookAndFeel(&otherLookAndFeel);
+//        slider1.setLookAndFeel(&otherLookAndFeel);
+
+    
+    header.setColour (juce::TextButton::buttonColourId, juce::Colours::cornflowerblue);
+    header.setButtonText ("Header");
+    addAndMakeVisible (header);
+
+    footer.setColour (juce::TextButton::buttonColourId, juce::Colours::cornflowerblue);
+    footer.setButtonText ("Footer");
+    addAndMakeVisible (footer);
+
+//    track1.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+//        track1.setButtonText ("track1");
+//        addAndMakeVisible (track1);
+    
+    addAndMakeVisible(track1);
+    
+
+    track2.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+    track2.setButtonText ("track2");
+    addAndMakeVisible (track2);
+
+    track3.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+    track3.setButtonText ("track3");
+    addAndMakeVisible (track3);
+    
+    track4.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+    track4.setButtonText ("track4");
+    addAndMakeVisible (track4);
+    
+    track5.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+    track5.setButtonText ("track5");
+    addAndMakeVisible (track5);
+    
+    track6.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+    track6.setButtonText ("track6");
+    addAndMakeVisible (track6);
+    
+    track7.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+    track7.setButtonText ("track7");
+    addAndMakeVisible (track7);
+
+    track8.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+    track8.setButtonText ("track8");
+    addAndMakeVisible (track8);
+
+    
+    mainArea.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+    mainArea.setButtonText ("mainArea");
+    addAndMakeVisible (mainArea);
+
+
+     setSize (1200, 820);
+}
+MainContentComponent::~MainContentComponent()
+{
+    
+}
+void MainContentComponent::paint (juce::Graphics& g)
+{
+    g.fillAll (juce::Colours::darkgrey);
+}
+
+void MainContentComponent::resized() 
+{
+    auto area = getLocalBounds();
+
+    auto headerFooterHeight = 36;
+    header.setBounds (area.removeFromTop    (headerFooterHeight));
+    footer.setBounds (area.removeFromBottom (headerFooterHeight));
+
+    auto trackWidth = 110;
+    auto trackHeight = getHeight() - 36*2;
+    
 //        knob1.setBounds(track1Bounds.removeFromBottom(trackHeight/10).removeFromLeft(trackWidth/1.5));
 //        knob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
     
+    track1.setBounds (area.removeFromLeft (trackWidth));
     track2.setBounds (area.removeFromLeft (trackWidth));
     track3.setBounds (area.removeFromLeft (trackWidth));
     track4.setBounds (area.removeFromLeft (trackWidth));

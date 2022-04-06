@@ -110,29 +110,19 @@ private:
 };
 
 
-
-//==============================================================================
-class MainContentComponent   : public juce::Component
+class Track : public juce::Component
 {
 public:
-    MainContentComponent();
-    ~MainContentComponent();
+    Track();
+    ~Track();
     void paint (juce::Graphics& g) override;
     void resized() override;
-    void settingsButtonPressed(juce::AudioDeviceSelectorComponent audioSetupComp);
     
     volumeSlider slider1;
 
 private:
-//    juce::Rectangle track1bounds;
-
     juce::LookAndFeel_V4 otherLookAndFeel;
-    
-    juce::TextButton header;
-    juce::TextButton footer;
-    juce::TextButton mainArea;
-    
-//    juce::Slider slider1;
+
     RotarySliderWithLabels lowFreqKnob1;
     RotarySliderWithLabels lowGainKnob1;
     RotarySliderWithLabels lowmidFreqKnob1;
@@ -155,8 +145,35 @@ private:
     juce::TextButton arm1;
     juce::TextButton mute1;
     juce::TextButton solo1;
+
+};
+
+
+//==============================================================================
+class MainContentComponent   : public juce::Component
+{
+public:
+    MainContentComponent();
+    ~MainContentComponent();
+    void paint (juce::Graphics& g) override;
+    void resized() override;
+    void settingsButtonPressed(juce::AudioDeviceSelectorComponent audioSetupComp);
     
-    juce::TextButton track1;
+    Track track1;
+
+private:
+//    juce::Rectangle track1bounds;
+
+    juce::LookAndFeel_V4 otherLookAndFeel;
+    
+    
+    juce::TextButton header;
+    juce::TextButton footer;
+    juce::TextButton mainArea;
+    
+//    juce::Slider slider1;
+    
+//    juce::TextButton track1;
     juce::TextButton track2;
     juce::TextButton track3;
     juce::TextButton track4;

@@ -72,7 +72,7 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
     
     
 //    auto level =  MainComponent::MainContentComponent::volumeSlider;
-    auto level = content.slider1.getValue();
+    auto level = content.track1.slider1.getValue();
 //    volumeSlider.getValue(); // not sure if this is volumeSlider appropriate
 //    auto level =  1.0;
 
