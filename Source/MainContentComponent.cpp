@@ -6,7 +6,17 @@
 //
 
 #include "MainContentComponent.h"
-
+//void Track::Input1SelectorChanged(juce::AudioDeviceSelectorComponent deviceManager)
+// {
+//    auto* device = deviceManager.getCurrentAudioDevice();
+//    auto input = device->getActiveInputChannels();
+//     switch (InputSelector1.getSelectedId())
+//     {
+//         case 1: input = device->getActiveInputChannels(); break;
+//     }
+//
+////     textLabel.setFont (textFont);
+// }
 
 Track::Track()
 {
@@ -52,6 +62,14 @@ Track::Track()
     
     addAndMakeVisible(AutoGain1);
     addAndMakeVisible(InputSelector1);
+    
+    
+    InputSelector1.addItem("Item 1", 1);
+    
+//
+//    InputSelector1.onChange = [this] { Track::Input1SelectorChanged(audioSetupComp); };
+//    InputSelector1.setSelectedId (1);
+
     
     
     addAndMakeVisible(arm1);
@@ -194,7 +212,54 @@ void Track::resized()
 
 void Track::paint(juce::Graphics& g)
 {
-    g.fillAll (juce::Colours::darkgrey);
+    g.fillAll (juce::Colours::grey);
+};
+
+juce::AudioSourceChannelInfo Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
+{
+    // For more details, see the help for AudioProcessor::getNextAudioBlock()
+    
+     auto* device = deviceManager->getCurrentAudioDevice();
+     auto activeInputChannels = device->getActiveInputChannels();
+     auto activeOutputChannels = device->getActiveOutputChannels();
+     
+     auto maxInputChannels  = activeInputChannels .getHighestBit() + 1;
+     auto maxOutputChannels = activeOutputChannels.getHighestBit() + 1;
+     
+     
+ //    auto level =  MainComponent::MainContentComponent::volumeSlider;
+//     auto level = content.track1.slider1.getValue();
+ //    volumeSlider.getValue(); // not sure if this is volumeSlider appropriate
+     auto level =  1.0;
+
+     
+     
+     for (auto channel = 0; channel < maxOutputChannels; ++channel)
+     {
+         if ((! activeOutputChannels[channel]) || maxInputChannels == 0)
+         {
+             bufferToFill.buffer->clear( channel, bufferToFill.startSample, bufferToFill.numSamples);
+         }
+         else
+         {
+             auto actualInputChannel = channel % maxInputChannels; // [1]
+             
+             if (! activeInputChannels[channel]) // [2]
+             {
+                 bufferToFill.buffer->clear (channel, bufferToFill.startSample, bufferToFill.numSamples);
+             }
+             else // [3]
+             {
+                 auto* inBuffer = bufferToFill.buffer->getReadPointer (actualInputChannel,
+                                                                       bufferToFill.startSample);
+                 auto* outBuffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
+
+                 for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
+                     outBuffer[sample] = inBuffer[sample] * level;
+             }
+         }
+     }
+    return bufferToFill;
 }
 
 MainContentComponent::MainContentComponent()
@@ -227,7 +292,10 @@ MainContentComponent::MainContentComponent()
     addAndMakeVisible (track7);
     addAndMakeVisible (track8);
 
-    
+    addAndMakeVisible (masterVolume);
+    masterVolume.setSliderStyle(juce::Slider::LinearVertical);
+    masterVolume.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
+
     mainArea.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
     mainArea.setButtonText ("mainArea");
     addAndMakeVisible (mainArea);
@@ -241,7 +309,7 @@ MainContentComponent::~MainContentComponent()
 }
 void MainContentComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (juce::Colours::darkgrey);
+    g.fillAll (juce::Colours::grey);
 }
 
 void MainContentComponent::resized() 
@@ -249,8 +317,11 @@ void MainContentComponent::resized()
     auto area = getLocalBounds();
 
     auto headerFooterHeight = 36;
-    header.setBounds (area.removeFromTop    (headerFooterHeight));
-    footer.setBounds (area.removeFromBottom (headerFooterHeight));
+//    header.setBounds (area.removeFromTop    (headerFooterHeight));
+//    footer.setBounds (area.removeFromBottom (headerFooterHeight));
+
+    (area.removeFromTop    (headerFooterHeight));
+    (area.removeFromBottom (headerFooterHeight));
 
     auto trackWidth = 110;
     auto trackHeight = getHeight() - 36*2;
@@ -267,8 +338,14 @@ void MainContentComponent::resized()
     track7.setBounds (area.removeFromLeft (trackWidth));
     track8.setBounds (area.removeFromLeft (trackWidth));
     
-    mainArea.setBounds(area);
-
+//    mainArea.setBounds(area);
+//    area.removeFromBottom(headerFooterHeight);
+//    transportControls.setBounds(area.removeFromBottom(50));
+    (area.removeFromBottom(50));
+    
+    masterVolume.setBounds (area.removeFromBottom(250).removeFromLeft(110));
+    
+    
     
 //        auto contentItemHeight = 24;
 //        limeContent.setBounds       (area.removeFromTop (contentItemHeight)); // [1]

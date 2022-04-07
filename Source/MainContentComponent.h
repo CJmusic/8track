@@ -117,6 +117,8 @@ public:
     ~Track();
     void paint (juce::Graphics& g) override;
     void resized() override;
+    void Input1SelectorChanged(juce::AudioDeviceSelectorComponent deviceManager);
+    juce::AudioSourceChannelInfo getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager *deviceManager);
     
     volumeSlider slider1;
 
@@ -159,6 +161,8 @@ public:
     void resized() override;
     void settingsButtonPressed(juce::AudioDeviceSelectorComponent audioSetupComp);
     
+    
+    
     Track track1;
     Track track2;
     Track track3;
@@ -167,6 +171,8 @@ public:
     Track track6;
     Track track7;
     Track track8;
+    
+    volumeSlider masterVolume;
 
 
 private:
