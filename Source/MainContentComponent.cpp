@@ -215,51 +215,25 @@ void Track::paint(juce::Graphics& g)
     g.fillAll (juce::Colours::grey);
 };
 
-juce::AudioSourceChannelInfo Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
+//juce::dsp::AudioBlock<float> Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
+void Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
 {
     // For more details, see the help for AudioProcessor::getNextAudioBlock()
+//    juce::dsp::AudioBlock<float> outBuffer;
+    auto level = slider1.getValue()/10;
+
+    for (auto channel = 0; channel < bufferToFill.buffer->getNumChannels(); ++channel)
+    {
+        // Get a pointer to the start sample in the buffer for this audio output channel
+        auto* buffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
+
+        // Fill the required number of samples with noise between -0.125 and +0.125
+        for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
+            buffer[sample] = level*(random.nextFloat() * 0.25f - 0.125f);
+    }
+
     
-     auto* device = deviceManager->getCurrentAudioDevice();
-     auto activeInputChannels = device->getActiveInputChannels();
-     auto activeOutputChannels = device->getActiveOutputChannels();
-     
-     auto maxInputChannels  = activeInputChannels .getHighestBit() + 1;
-     auto maxOutputChannels = activeOutputChannels.getHighestBit() + 1;
-     
-     
- //    auto level =  MainComponent::MainContentComponent::volumeSlider;
-//     auto level = content.track1.slider1.getValue();
- //    volumeSlider.getValue(); // not sure if this is volumeSlider appropriate
-     auto level =  1.0;
-
-     
-     
-     for (auto channel = 0; channel < maxOutputChannels; ++channel)
-     {
-         if ((! activeOutputChannels[channel]) || maxInputChannels == 0)
-         {
-             bufferToFill.buffer->clear( channel, bufferToFill.startSample, bufferToFill.numSamples);
-         }
-         else
-         {
-             auto actualInputChannel = channel % maxInputChannels; // [1]
-             
-             if (! activeInputChannels[channel]) // [2]
-             {
-                 bufferToFill.buffer->clear (channel, bufferToFill.startSample, bufferToFill.numSamples);
-             }
-             else // [3]
-             {
-                 auto* inBuffer = bufferToFill.buffer->getReadPointer (actualInputChannel,
-                                                                       bufferToFill.startSample);
-                 auto* outBuffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
-
-                 for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
-                     outBuffer[sample] = inBuffer[sample] * level;
-             }
-         }
-     }
-    return bufferToFill;
+//    return buffer;
 }
 
 MainContentComponent::MainContentComponent()

@@ -118,12 +118,14 @@ public:
     void paint (juce::Graphics& g) override;
     void resized() override;
     void Input1SelectorChanged(juce::AudioDeviceSelectorComponent deviceManager);
-    juce::AudioSourceChannelInfo getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager *deviceManager);
-    
+    void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager *deviceManager);
+//    juce::dsp::AudioBlock<float> getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager *deviceManager);
+
     volumeSlider slider1;
 
 private:
     juce::LookAndFeel_V4 otherLookAndFeel;
+    juce::Random random;
 
     RotarySliderWithLabels lowFreqKnob1;
     RotarySliderWithLabels lowGainKnob1;

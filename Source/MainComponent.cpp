@@ -60,8 +60,68 @@ void MainComponent::prepareToPlay (int samplesPerBlockExpected, double sampleRat
 
 void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill)
 {
+    auto level = content.masterVolume.getValue()/10;
+    auto* device = deviceManager.getCurrentAudioDevice();
+    auto activeInputChannels = device->getActiveInputChannels();
+    auto activeOutputChannels = device->getActiveOutputChannels();
+    
+    auto maxInputChannels  = activeInputChannels .getHighestBit() + 1;
+    auto maxOutputChannels = activeOutputChannels.getHighestBit() + 1;
+    
+    
+//    auto level =  MainComponent::MainContentComponent::volumeSlider;
+//    auto level = slider1.getValue()/10;
+//    volumeSlider.getValue(); // not sure if this is volumeSlider appropriate
+//     auto level =  1.0;
+
+    
+    
+    for (auto channel = 0; channel < maxOutputChannels; ++channel)
+    {
+        if ((! activeOutputChannels[channel]) || maxInputChannels == 0)
+        {
+            bufferToFill.buffer->clear( channel, bufferToFill.startSample, bufferToFill.numSamples);
+        }
+        else
+        {
+            auto actualInputChannel = channel % maxInputChannels; // [1]
+            
+            if (! activeInputChannels[channel]) // [2]
+            {
+                bufferToFill.buffer->clear (channel, bufferToFill.startSample, bufferToFill.numSamples);
+            }
+            else // [3]
+            {
+                auto* inBuffer = bufferToFill.buffer->getReadPointer (actualInputChannel,
+                                                                      bufferToFill.startSample);
+                auto* outBuffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
+
+                for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
+                    outBuffer[sample] = inBuffer[sample] * level;
+            }
+        }
+    }
+
     // Your audio-processing code goes here!
+//    auto buffer1 = content.track1.getNextAudioBlock(bufferToFill, &deviceManager);
+//    auto buffer2 = content.track2.getNextAudioBlock(bufferToFill, &deviceManager);
+//    auto buffer3 = content.track3.getNextAudioBlock(bufferToFill, &deviceManager);
+//    auto buffer4 = content.track4.getNextAudioBlock(bufferToFill, &deviceManager);
+//    auto buffer5 = content.track5.getNextAudioBlock(bufferToFill, &deviceManager);
+//    auto buffer6 = content.track6.getNextAudioBlock(bufferToFill, &deviceManager);
+//    auto buffer7 = content.track7.getNextAudioBlock(bufferToFill, &deviceManager);
+//    auto buffer8 = content.track8.getNextAudioBlock(bufferToFill, &deviceManager);
     content.track1.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track2.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track3.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track4.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track5.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track6.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track7.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track8.getNextAudioBlock(bufferToFill, &deviceManager);
+
+    
+//    auto masterBuffer = level*(buffer1 + buffer2 + buffer3 + buffer4 + buffer5 + buffer6 + buffer7 + buffer8);
     // For more details, see the help for AudioProcessor::getNextAudioBlock()
 }
     // Right now we are not producing any data, in which case we need to clear the buffer
