@@ -125,7 +125,6 @@ public:
 
 private:
     juce::LookAndFeel_V4 otherLookAndFeel;
-    juce::Random random;
 
     RotarySliderWithLabels lowFreqKnob1;
     RotarySliderWithLabels lowGainKnob1;
@@ -176,12 +175,13 @@ public:
     
     volumeSlider masterVolume;
 
+    juce::Random random;
 
 private:
 //    juce::Rectangle track1bounds;
 
     juce::LookAndFeel_V4 otherLookAndFeel;
-    
+
     
     juce::TextButton header;
     juce::TextButton footer;

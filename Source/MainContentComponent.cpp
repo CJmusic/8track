@@ -218,21 +218,6 @@ void Track::paint(juce::Graphics& g)
 //juce::dsp::AudioBlock<float> Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
 void Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
 {
-    // For more details, see the help for AudioProcessor::getNextAudioBlock()
-//    juce::dsp::AudioBlock<float> outBuffer;
-    auto level = slider1.getValue()/10;
-
-    for (auto channel = 0; channel < bufferToFill.buffer->getNumChannels(); ++channel)
-    {
-        // Get a pointer to the start sample in the buffer for this audio output channel
-        auto* buffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
-
-        // Fill the required number of samples with noise between -0.125 and +0.125
-        for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
-            buffer[sample] = level*(random.nextFloat() * 0.25f - 0.125f);
-    }
-
-    
 //    return buffer;
 }
 

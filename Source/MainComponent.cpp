@@ -75,32 +75,32 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
 //     auto level =  1.0;
 
     
-    
-    for (auto channel = 0; channel < maxOutputChannels; ++channel)
-    {
-        if ((! activeOutputChannels[channel]) || maxInputChannels == 0)
-        {
-            bufferToFill.buffer->clear( channel, bufferToFill.startSample, bufferToFill.numSamples);
-        }
-        else
-        {
-            auto actualInputChannel = channel % maxInputChannels; // [1]
-            
-            if (! activeInputChannels[channel]) // [2]
-            {
-                bufferToFill.buffer->clear (channel, bufferToFill.startSample, bufferToFill.numSamples);
-            }
-            else // [3]
-            {
-                auto* inBuffer = bufferToFill.buffer->getReadPointer (actualInputChannel,
-                                                                      bufferToFill.startSample);
-                auto* outBuffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
-
-                for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
-                    outBuffer[sample] = inBuffer[sample] * level;
-            }
-        }
-    }
+//
+//    for (auto channel = 0; channel < maxOutputChannels; ++channel)
+//    {
+//        if ((! activeOutputChannels[channel]) || maxInputChannels == 0)
+//        {
+//            bufferToFill.buffer->clear( channel, bufferToFill.startSample, bufferToFill.numSamples);
+//        }
+//        else
+//        {
+//            auto actualInputChannel = channel % maxInputChannels; // [1]
+//
+//            if (! activeInputChannels[channel]) // [2]
+//            {
+//                bufferToFill.buffer->clear (channel, bufferToFill.startSample, bufferToFill.numSamples);
+//            }
+//            else // [3]
+//            {
+//                auto* inBuffer = bufferToFill.buffer->getReadPointer (actualInputChannel,
+//                                                                      bufferToFill.startSample);
+//                auto* outBuffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
+//
+//                for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
+//                    outBuffer[sample] = inBuffer[sample] * level;
+//            }
+//        }
+//    }
 
     // Your audio-processing code goes here!
 //    auto buffer1 = content.track1.getNextAudioBlock(bufferToFill, &deviceManager);
@@ -120,7 +120,21 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
     content.track7.getNextAudioBlock(bufferToFill, &deviceManager);
     content.track8.getNextAudioBlock(bufferToFill, &deviceManager);
 
+    // For more details, see the help for AudioProcessor::getNextAudioBlock()
+//    juce::dsp::AudioBlock<float> outBuffer;
+
+    for (auto channel = 0; channel < bufferToFill.buffer->getNumChannels(); ++channel)
+    {
+        // Get a pointer to the start sample in the buffer for this audio output channel
+        auto* buffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
+
+        // Fill the required number of samples with noise between -0.125 and +0.125
+        for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
+            buffer[sample] = level*(content.random.nextFloat() * 0.25f - 0.125f);
+    }
+
     
+
 //    auto masterBuffer = level*(buffer1 + buffer2 + buffer3 + buffer4 + buffer5 + buffer6 + buffer7 + buffer8);
     // For more details, see the help for AudioProcessor::getNextAudioBlock()
 }
