@@ -68,7 +68,7 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
     auto maxInputChannels  = activeInputChannels .getHighestBit() + 1;
     auto maxOutputChannels = activeOutputChannels.getHighestBit() + 1;
     
-    
+    auto midiBuffer = juce::MidiBuffer();
 //    auto level =  MainComponent::MainContentComponent::volumeSlider;
 //    auto level = slider1.getValue()/10;
 //    volumeSlider.getValue(); // not sure if this is volumeSlider appropriate
@@ -120,6 +120,9 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
 //    content.track7.getNextAudioBlock(bufferToFill, &deviceManager);
 //    content.track8.getNextAudioBlock(bufferToFill, &deviceManager);
 
+    
+//    content.track1.processBlock( *bufferToFill.buffer , midiBuffer); // this line breaks things
+    
     // For more details, see the help for AudioProcessor::getNextAudioBlock()
 //    juce::dsp::AudioBlock<float> outBuffer;
 
