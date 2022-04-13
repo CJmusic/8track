@@ -373,7 +373,7 @@ void Track::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& mi
 //==============================================================================
 bool Track::hasEditor() const
 {
-    return true; // (change this to false if you choose to not supply an editor)
+    return false; // (change this to false if you choose to not supply an editor)
 }
 
 juce::AudioProcessorEditor* Track::createEditor()

@@ -121,7 +121,7 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
 //    content.track8.getNextAudioBlock(bufferToFill, &deviceManager);
 
     
-//    content.track1.processBlock( *bufferToFill.buffer , midiBuffer); // this line breaks things
+    content.track1.processBlock( *bufferToFill.buffer , midiBuffer); // this line breaks things
     
     // For more details, see the help for AudioProcessor::getNextAudioBlock()
 //    juce::dsp::AudioBlock<float> outBuffer;
