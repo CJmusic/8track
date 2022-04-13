@@ -366,8 +366,8 @@ void Track::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& mi
    juce::dsp::ProcessContextReplacing<float> leftContext(leftBlock);
    juce::dsp::ProcessContextReplacing<float> rightContext(rightBlock);
 
-//   leftChain.process(leftContext);
-//   rightChain.process(rightContext);
+   leftChain.process(leftContext);
+   rightChain.process(rightContext);
 }
 
 //==============================================================================
@@ -426,65 +426,65 @@ ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)
 
     return settings;
 }
-//
-//Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate)
-//{
-//    return juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
-//        chainSettings.peakFreq,
-//        chainSettings.peakQuality,
-//        juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
-//}
-//
-//void Track::updatePeakFilter(const ChainSettings& chainSettings)
-//{
-//
-//    auto peakCoefficients = makePeakFilter(chainSettings, getSampleRate());
-//    updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
-//    updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
-//
-//}
-//
-//void updateCoefficients(Coefficients &old, const Coefficients &replacements)
-//{
-//    *old = *replacements;
-//}
-//
-//void Track::updateLowCutFilters(const ChainSettings &chainSettings)
-//{
-//
-//    auto lowCutCoefficients = makeLowCutFilter(chainSettings, getSampleRate());
-//
-//    auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
-//    updateCutFilter(leftLowCut, lowCutCoefficients, chainSettings.lowCutSlope);
-//
-//    auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
-//    updateCutFilter(rightLowCut, lowCutCoefficients, chainSettings.lowCutSlope);
-//
-//}
-//
-//
-//void Track::updateHighCutFilters(const ChainSettings &chainSettings)
-//{
-//
-//    auto highCutCoefficients = makeHighCutFilter(chainSettings, getSampleRate());
-//
-//
-//    auto& leftHighCut = leftChain.get<ChainPositions::HighCut>();
-//    updateCutFilter(leftHighCut, highCutCoefficients, chainSettings.highCutSlope);
-//
-//    auto& rightHighCut = rightChain.get<ChainPositions::HighCut>();
-//    updateCutFilter(rightHighCut, highCutCoefficients, chainSettings.highCutSlope);
-//
-//}
-//
-//void Track::updateFilters()
-//{
-//    auto chainSettings = getChainSettings(apvts);
-//
-//    updateLowCutFilters(chainSettings);
-//    updatePeakFilter(chainSettings);
-//    updateHighCutFilters(chainSettings);
-//}
+
+Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate)
+{
+    return juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
+        chainSettings.peakFreq,
+        chainSettings.peakQuality,
+        juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
+}
+
+void Track::updatePeakFilter(const ChainSettings& chainSettings)
+{
+
+    auto peakCoefficients = makePeakFilter(chainSettings, getSampleRate());
+    updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
+    updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
+
+}
+
+void updateCoefficients(Coefficients &old, const Coefficients &replacements)
+{
+    *old = *replacements;
+}
+
+void Track::updateLowCutFilters(const ChainSettings &chainSettings)
+{
+
+    auto lowCutCoefficients = makeLowCutFilter(chainSettings, getSampleRate());
+
+    auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
+    updateCutFilter(leftLowCut, lowCutCoefficients, chainSettings.lowCutSlope);
+
+    auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
+    updateCutFilter(rightLowCut, lowCutCoefficients, chainSettings.lowCutSlope);
+
+}
+
+
+void Track::updateHighCutFilters(const ChainSettings &chainSettings)
+{
+
+    auto highCutCoefficients = makeHighCutFilter(chainSettings, getSampleRate());
+
+
+    auto& leftHighCut = leftChain.get<ChainPositions::HighCut>();
+    updateCutFilter(leftHighCut, highCutCoefficients, chainSettings.highCutSlope);
+
+    auto& rightHighCut = rightChain.get<ChainPositions::HighCut>();
+    updateCutFilter(rightHighCut, highCutCoefficients, chainSettings.highCutSlope);
+
+}
+
+void Track::updateFilters()
+{
+    auto chainSettings = getChainSettings(apvts);
+
+    updateLowCutFilters(chainSettings);
+    updatePeakFilter(chainSettings);
+    updateHighCutFilters(chainSettings);
+}
 
 juce::AudioProcessorValueTreeState::ParameterLayout Track::createParameterLayout()
 {
@@ -528,14 +528,6 @@ juce::AudioProcessorValueTreeState::ParameterLayout Track::createParameterLayout
 
 
 
-void Track::updateFilters()
-{
-    auto chainSettings = getChainSettings(apvts);
-
-//    updateLowCutFilters(chainSettings);
-//    updatePeakFilter(chainSettings);
-//    updateHighCutFilters(chainSettings);
-}
 
 MainContentComponent::MainContentComponent()
 {
