@@ -20,23 +20,23 @@
 // }
 
 TrackEditor::TrackEditor(TrackProcessor& p) : AudioProcessorEditor(&p), audioProcessor(p),
-volumeSliderAttachment(audioProcessor.apvts, "Peak Freq", slider1),
-lowFreqKnobAttachment(audioProcessor.apvts, "Peak Freq", lowFreqKnob1),
-lowGainKnobAttachment(audioProcessor.apvts, "Peak Gain", lowGainKnob1),
-lowmidFreqKnobAttachment(audioProcessor.apvts, "Peak Quality", lowmidFreqKnob1),
-lowmidQKnobAttachment(audioProcessor.apvts, "LowCut Freq", lowmidQKnob1),
-lowmidGainKnobAttachment(audioProcessor.apvts, "LowCut Freq", lowmidGainKnob1),
-highmidFreqKnobAttachment(audioProcessor.apvts, "HighCut Freq", highmidFreqKnob1),
-highmidQKnobAttachment(audioProcessor.apvts, "LowCut Slope", highmidQKnob1),
-highmidGainKnobAttachment(audioProcessor.apvts, "HighCut Slope", highmidGainKnob1),
-highFreqKnobAttachment(audioProcessor.apvts, "HighCut Slope", highFreqKnob1),
-highGainKnobAttachment(audioProcessor.apvts, "HighCut Slope", highGainKnob1),
-HPKnobAttachment(audioProcessor.apvts, "HighCut Slope", HPKnob1),
-LPKnobAttachment(audioProcessor.apvts, "HighCut Slope", LPKnob1),
-ThresholdKnobAttachment(audioProcessor.apvts, "HighCut Slope", ThresholdKnob1),
-MakeupGainKnobAttachment(audioProcessor.apvts, "HighCut Slope", MakeupGainKnob1),
-ReleaseKnobAttachment(audioProcessor.apvts, "HighCut Slope", ReleaseKnob1),
-RatioKnobAttachment(audioProcessor.apvts, "HighCut Slope", RatioKnob1)
+volumeSliderAttachment(audioProcessor.apvts, "Volume", slider1),
+lowFreqKnobAttachment(audioProcessor.apvts, "low Freq", lowFreqKnob1),
+lowGainKnobAttachment(audioProcessor.apvts, "low Gain", lowGainKnob1),
+lowmidFreqKnobAttachment(audioProcessor.apvts, "lowmid Freq", lowmidFreqKnob1),
+lowmidQKnobAttachment(audioProcessor.apvts, "lowmid Q", lowmidQKnob1),
+lowmidGainKnobAttachment(audioProcessor.apvts, "lowmid Gain", lowmidGainKnob1),
+highmidFreqKnobAttachment(audioProcessor.apvts, "highmid Freq", highmidFreqKnob1),
+highmidQKnobAttachment(audioProcessor.apvts, "highmid Q", highmidQKnob1),
+highmidGainKnobAttachment(audioProcessor.apvts, "highmid Gain", highmidGainKnob1),
+highFreqKnobAttachment(audioProcessor.apvts, "high Freq", highFreqKnob1),
+highGainKnobAttachment(audioProcessor.apvts, "high Gain", highGainKnob1),
+HPKnobAttachment(audioProcessor.apvts, "HP Filter", HPKnob1),
+LPKnobAttachment(audioProcessor.apvts, "LP Filter", LPKnob1),
+ThresholdKnobAttachment(audioProcessor.apvts, "Threshold", ThresholdKnob1),
+MakeupGainKnobAttachment(audioProcessor.apvts, "Makeup Gain", MakeupGainKnob1),
+ReleaseKnobAttachment(audioProcessor.apvts, "Release", ReleaseKnob1),
+RatioKnobAttachment(audioProcessor.apvts, "Ratio", RatioKnob1)
 //AutoGainAttachment(audioProcessor.apvts, "HighCut Slope", AutoGain1)
 {
     addAndMakeVisible (slider1);
@@ -236,6 +236,7 @@ void TrackEditor::paint(juce::Graphics& g)
 
 //juce::dsp::AudioBlock<float> Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
 TrackProcessor::TrackProcessor() {
+//    addAndMakeVisible(TrackEditor)
 
 };
 
@@ -464,31 +465,54 @@ ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)
     ChainSettings settings;
 
 
-    settings.lowCutFreq = apvts.getRawParameterValue("LowCut Freq")->load();
-    settings.highCutFreq = apvts.getRawParameterValue("HighCut Freq")->load();
-    settings.peakFreq = apvts.getRawParameterValue("Peak Freq")->load();
-    settings.peakGainInDecibels = apvts.getRawParameterValue("Peak Gain")->load();
-    settings.peakQuality = apvts.getRawParameterValue("Peak Quality")->load();
-    settings.lowCutSlope = static_cast<Slope>(apvts.getRawParameterValue("LowCut Slope")->load());
-    settings.highCutSlope = static_cast<Slope>(apvts.getRawParameterValue("HighCut Slope")->load());
+//    settings.lowCutFreq = apvts.getRawParameterValue("LowCut Freq")->load();
+//    settings.highCutFreq = apvts.getRawParameterValue("HighCut Freq")->load();
+//    settings.peakFreq = apvts.getRawParameterValue("Peak Freq")->load();
+//    settings.peakGainInDecibels = apvts.getRawParameterValue("Peak Gain")->load();
+//    settings.peakQuality = apvts.getRawParameterValue("Peak Quality")->load();
+//    settings.lowCutSlope = static_cast<Slope>(apvts.getRawParameterValue("LowCut Slope")->load());
+//    settings.highCutSlope = static_cast<Slope>(apvts.getRawParameterValue("HighCut Slope")->load());
 
+    
+    settings.Volume = apvts.getRawParameterValue("Volume")->load();
+    settings.lowFreq = apvts.getRawParameterValue("low Freq")->load();
+    settings.lowGain = apvts.getRawParameterValue("low Gain")->load();
+    settings.lowmidFreq = apvts.getRawParameterValue("lowmid Freq")->load();
+    settings.lowmidQ = apvts.getRawParameterValue("lowmid Q")->load();
+    settings.lowmidGain = apvts.getRawParameterValue("lowmid Gain")->load();
+    settings.highmidFreq = apvts.getRawParameterValue("highmid Freq")->load();
+    settings.highmidQ = apvts.getRawParameterValue("highmid Q")->load();
+    settings.highmidGain = apvts.getRawParameterValue("highmid Gain")->load();
+    settings.highFreq = apvts.getRawParameterValue("high Freq") ->load();
+    settings.highGain = apvts.getRawParameterValue("high Gain")->load();
+    settings.HPFilter = apvts.getRawParameterValue("HP Filter")->load();
+    settings.LPFilter = apvts.getRawParameterValue("LP Filter")->load();
+    settings.Threshold = apvts.getRawParameterValue("Threshold")->load();
+    settings.MakeupGain = apvts.getRawParameterValue("Makeup Gain")->load();
+    settings.Release = apvts.getRawParameterValue("Release")->load();
+    settings.Ratio = apvts.getRawParameterValue("Ratio")->load();
+
+    
+    
+    
+    
     return settings;
 }
 
 Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate)
 {
-    return juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
-        chainSettings.peakFreq,
-        chainSettings.peakQuality,
-        juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
+//    return juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
+//        chainSettings.peakFreq,
+//        chainSettings.peakQuality,
+//        juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
 }
 
 void TrackProcessor::updatePeakFilter(const ChainSettings& chainSettings)
 {
 
-    auto peakCoefficients = makePeakFilter(chainSettings, getSampleRate());
-    updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
-    updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
+//    auto peakCoefficients = makePeakFilter(chainSettings, getSampleRate());
+//    updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
+//    updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
 
 }
 
@@ -500,13 +524,13 @@ void updateCoefficients(Coefficients &old, const Coefficients &replacements)
 void TrackProcessor::updateLowCutFilters(const ChainSettings &chainSettings)
 {
 
-    auto lowCutCoefficients = makeLowCutFilter(chainSettings, getSampleRate());
-
-    auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
-    updateCutFilter(leftLowCut, lowCutCoefficients, chainSettings.lowCutSlope);
-
-    auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
-    updateCutFilter(rightLowCut, lowCutCoefficients, chainSettings.lowCutSlope);
+//    auto lowCutCoefficients = makeLowCutFilter(chainSettings, getSampleRate());
+//
+//    auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
+//    updateCutFilter(leftLowCut, lowCutCoefficients, chainSettings.lowCutSlope);
+//
+//    auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
+//    updateCutFilter(rightLowCut, lowCutCoefficients, chainSettings.lowCutSlope);
 
 }
 
@@ -514,14 +538,14 @@ void TrackProcessor::updateLowCutFilters(const ChainSettings &chainSettings)
 void TrackProcessor::updateHighCutFilters(const ChainSettings &chainSettings)
 {
 
-    auto highCutCoefficients = makeHighCutFilter(chainSettings, getSampleRate());
-
-
-    auto& leftHighCut = leftChain.get<ChainPositions::HighCut>();
-    updateCutFilter(leftHighCut, highCutCoefficients, chainSettings.highCutSlope);
-
-    auto& rightHighCut = rightChain.get<ChainPositions::HighCut>();
-    updateCutFilter(rightHighCut, highCutCoefficients, chainSettings.highCutSlope);
+//    auto highCutCoefficients = makeHighCutFilter(chainSettings, getSampleRate());
+//
+//
+//    auto& leftHighCut = leftChain.get<ChainPositions::HighCut>();
+//    updateCutFilter(leftHighCut, highCutCoefficients, chainSettings.highCutSlope);
+//
+//    auto& rightHighCut = rightChain.get<ChainPositions::HighCut>();
+//    updateCutFilter(rightHighCut, highCutCoefficients, chainSettings.highCutSlope);
 
 }
 
@@ -537,28 +561,47 @@ void TrackProcessor::updateFilters()
 juce::AudioProcessorValueTreeState::ParameterLayout TrackProcessor::createParameterLayout()
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
+    
+    
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Volume", "Volume", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("low Freq", "low Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("low Gain", "low Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Freq", "lowmid Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Q", "lowmid Q", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Gain", "lowmid Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("highmid Freq", "highmid Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("highmid Q", "highmid Q", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("highmid Gain", "highmid Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("high Freq", "high Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("high Gain", "high Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("HP Filter", "HP Filter", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("LP Filter", "LP Filter", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Threshold", "Threshold", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Makeup Gain", "Makeup Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Release", "Release", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Ratio", "Ratio", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
 
-    layout.add(std::make_unique<juce::AudioParameterFloat>("LowCut Freq", "LowCut Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+//    layout.add(std::make_unique<juce::AudioParameterFloat>("Volume", "Volume", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+//
+//    layout.add(std::make_unique<juce::AudioParameterFloat>("HighCut Freq", "HighCut Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20000.f));
+//
+//    layout.add(std::make_unique<juce::AudioParameterFloat>("Peak Freq", "Peak Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 750.f));
+//
+//    layout.add(std::make_unique<juce::AudioParameterFloat>("Peak Gain", "Peak Gain", juce::NormalisableRange<float>(-24.f, 24.f, 0.5f, 1.f), 0.0f));
+//
+//    layout.add(std::make_unique<juce::AudioParameterFloat>("Peak Quality", "Peak Quality", juce::NormalisableRange<float>(0.1f, 10.f, 0.05f, 1.f), 1.0f));
 
-    layout.add(std::make_unique<juce::AudioParameterFloat>("HighCut Freq", "HighCut Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20000.f));
+//    juce::StringArray stringArray;
+//    for( int i = 0; i < 4; ++i )
+//    {
+//        juce::String str;
+//        str << (12 + i * 12);
+//        str << "db/Oct";
+//        stringArray.add(str);
+//    }
 
-    layout.add(std::make_unique<juce::AudioParameterFloat>("Peak Freq", "Peak Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 750.f));
-
-    layout.add(std::make_unique<juce::AudioParameterFloat>("Peak Gain", "Peak Gain", juce::NormalisableRange<float>(-24.f, 24.f, 0.5f, 1.f), 0.0f));
-
-    layout.add(std::make_unique<juce::AudioParameterFloat>("Peak Quality", "Peak Quality", juce::NormalisableRange<float>(0.1f, 10.f, 0.05f, 1.f), 1.0f));
-
-    juce::StringArray stringArray;
-    for( int i = 0; i < 4; ++i )
-    {
-        juce::String str;
-        str << (12 + i * 12);
-        str << "db/Oct";
-        stringArray.add(str);
-    }
-
-    layout.add(std::make_unique<juce::AudioParameterChoice>("LowCut Slope", "LowCut Slope", stringArray, 0));
-    layout.add(std::make_unique<juce::AudioParameterChoice>("HighCut Slope", "HighCut Slope", stringArray, 0));
+//    layout.add(std::make_unique<juce::AudioParameterChoice>("LowCut Slope", "LowCut Slope", stringArray, 0));
+//    layout.add(std::make_unique<juce::AudioParameterChoice>("HighCut Slope", "HighCut Slope", stringArray, 0));
 
       
 
