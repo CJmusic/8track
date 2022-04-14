@@ -292,6 +292,28 @@ private:
     RotarySliderWithLabels ReleaseKnob1;
     RotarySliderWithLabels RatioKnob1;
     juce::TextButton AutoGain1;
+    
+    using APVTS = juce::AudioProcessorValueTreeState;
+    using Attachment = APVTS::SliderAttachment;
+    
+    Attachment lowFreqKnobAttachment,
+    lowGainKnobAttachment,
+    lowmidFreqKnobAttachment,
+    lowmidQKnobAttachment,
+    lowmidGainKnobAttachment,
+    highmidFreqKnobAttachment,
+    highmidQKnobAttachment,
+    highmidGainKnobAttachment,
+    highFreqKnobAttachment,
+    highGainKnobAttachment,
+    HPKnobAttachment,
+    LPKnobAttachment,
+    ThresholdKnobAttachment,
+    MakeupGainKnobAttachment,
+    ReleaseKnobAttachment,
+    RatioKnobAttachment,
+    AutoGainAttachment;
+    
     juce::ComboBox InputSelector1;
     
     juce::TextButton arm1;

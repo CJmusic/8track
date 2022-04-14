@@ -18,7 +18,23 @@
 ////     textLabel.setFont (textFont);
 // }
 
-Track::Track()
+Track::Track(Track& p) : audioProcessor(p),
+lowFreqKnobAttachment(audioProcessor.apvts, "Peak Freq", lowFreqKnob1),
+lowGainKnobAttachment(audioProcessor.apvts, "Peak Gain", lowGainKnob1),
+lowmidFreqKnobAttachment(audioProcessor.apvts, "Peak Quality", lowmidFreqKnob1),
+lowmidQKnobAttachment(audioProcessor.apvts, "LowCut Freq", lowmidQKnob1),
+highmidFreqKnobAttachment(audioProcessor.apvts, "HighCut Freq", lowmidGainKnob1),
+highmidQKnobAttachment(audioProcessor.apvts, "LowCut Slope", highmidFreqKnob1),
+highmidGainKnobAttachment(audioProcessor.apvts, "HighCut Slope", highmidQKnob1),
+highFreqKnobAttachment(audioProcessor.apvts, "HighCut Slope", highmidGainKnob1),
+highGainKnobAttachment(audioProcessor.apvts, "HighCut Slope", highFreqKnob1),
+HPKnobAttachment(audioProcessor.apvts, "HighCut Slope", HPKnob1),
+LPKnobAttachment(audioProcessor.apvts, "HighCut Slope", LPKnob1),
+ThresholdKnobAttachment(audioProcessor.apvts, "HighCut Slope", ThresholdKnob1),
+MakeupGainKnobAttachment(audioProcessor.apvts, "HighCut Slope", MakeupGainKnob1),
+ReleaseKnobAttachment(audioProcessor.apvts, "HighCut Slope", ReleaseKnob1),
+RatioKnobAttachment(audioProcessor.apvts, "HighCut Slope", RatioKnob1),
+AutoGainAttachment(audioProcessor.apvts, "HighCut Slope", AutoGain1)
 {
     addAndMakeVisible (slider1);
     slider1.setSliderStyle(juce::Slider::LinearVertical);
@@ -236,7 +252,9 @@ void Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, 
         for (auto sample = 0; sample < bufferToFill.numSamples; ++sample){
             buffer[sample] += (random.nextFloat()*level);
         }
+        
     }
+    updateFilters();
 }
 
 const juce::String Track::getName() const
@@ -500,8 +518,8 @@ void Track::updateFilters()
     auto chainSettings = getChainSettings(apvts);
 
     updateLowCutFilters(chainSettings);
-    updatePeakFilter(chainSettings);
-    updateHighCutFilters(chainSettings);
+//    updatePeakFilter(chainSettings);
+//    updateHighCutFilters(chainSettings);
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout Track::createParameterLayout()
