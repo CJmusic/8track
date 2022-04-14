@@ -218,8 +218,8 @@ class TrackProcessor : public juce::Component,
               public juce::AudioProcessor
 {
 public:
-//    TrackProcessor();
-//    ~TrackProcessor();
+    TrackProcessor();
+    ~TrackProcessor();
     void Input1SelectorChanged(juce::AudioDeviceSelectorComponent deviceManager);
     void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager *deviceManager);
 //    juce::dsp::AudioBlock<float> getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager *deviceManager);

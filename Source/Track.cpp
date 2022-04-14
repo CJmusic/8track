@@ -45,7 +45,7 @@ RatioKnobAttachment(audioProcessor.apvts, "HighCut Slope", RatioKnob1)
 //        addAndMakeVisible(knob1);
 //        knob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
 
-    volumeSlider slider1;
+//    volumeSlider slider1;
     addAndMakeVisible(lowFreqKnob1);
     lowFreqKnob1.setSliderStyle(juce::Slider::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     addAndMakeVisible(lowGainKnob1);
@@ -235,13 +235,13 @@ void TrackEditor::paint(juce::Graphics& g)
 };
 
 //juce::dsp::AudioBlock<float> Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
-//void TrackProcessor::TrackProcessor {
-//
-//};
-//
-//void TrackProcessor::~TrackProcessor {
-//
-//};
+TrackProcessor::TrackProcessor() {
+
+};
+
+TrackProcessor::~TrackProcessor() {
+
+};
 
 void TrackProcessor::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
 {
@@ -266,7 +266,7 @@ void TrackProcessor::getNextAudioBlock(const juce::AudioSourceChannelInfo& buffe
         }
         
     }
-    updateFilters();
+//    updateFilters();
 }
 
 const juce::String TrackProcessor::getName() const
@@ -421,12 +421,12 @@ void TrackProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiB
 //==============================================================================
 bool TrackProcessor::hasEditor() const
 {
-    return false; // (change this to false if you choose to not supply an editor)
+    return true; // (change this to false if you choose to not supply an editor)
 }
 
 juce::AudioProcessorEditor* TrackProcessor::createEditor()
 {
-    return new TrackEditor (*this);
+    return new TrackEditor(*this);
 //     return new juce::GenericAudioProcessorEditor(*this);
 }
 

@@ -46,7 +46,7 @@ MainContentComponent::MainContentComponent() //:
 //        track1.setButtonText ("track1");
 //        addAndMakeVisible (track1);
     
-    addAndMakeVisible (track1);
+    addAndMakeVisible (track1.createEditor());
     addAndMakeVisible (track2);
     addAndMakeVisible (track3);
     addAndMakeVisible (track4);
@@ -54,6 +54,8 @@ MainContentComponent::MainContentComponent() //:
     addAndMakeVisible (track6);
     addAndMakeVisible (track7);
     addAndMakeVisible (track8);
+    
+//    track1.paint();
 
     addAndMakeVisible (masterVolume);
     masterVolume.setSliderStyle(juce::Slider::LinearVertical);
