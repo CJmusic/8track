@@ -219,6 +219,24 @@ void Track::paint(juce::Graphics& g)
 void Track::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill, juce::AudioDeviceManager* deviceManager)
 {
 //    return buffer;
+    auto level = slider1.getValue()/10;
+    auto* device = deviceManager->getCurrentAudioDevice();
+    auto activeInputChannels = device->getActiveInputChannels();
+    auto activeOutputChannels = device->getActiveOutputChannels();
+    
+    auto maxInputChannels  = activeInputChannels .getHighestBit() + 1;
+    auto maxOutputChannels = activeOutputChannels.getHighestBit() + 1;
+    
+    for (auto channel = 0; channel < bufferToFill.buffer->getNumChannels(); ++channel)
+    {
+        // Get a pointer to the start sample in the buffer for this audio output channel
+        auto* buffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
+
+        // Fill the required number of samples with noise between -0.125 and +0.125
+        for (auto sample = 0; sample < bufferToFill.numSamples; ++sample){
+            buffer[sample] += (random.nextFloat()*level);
+        }
+    }
 }
 
 const juce::String Track::getName() const

@@ -111,17 +111,17 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
 //    auto buffer6 = content.track6.getNextAudioBlock(bufferToFill, &deviceManager);
 //    auto buffer7 = content.track7.getNextAudioBlock(bufferToFill, &deviceManager);
 //    auto buffer8 = content.track8.getNextAudioBlock(bufferToFill, &deviceManager);
-//    content.track1.getNextAudioBlock(bufferToFill, &deviceManager);
-//    content.track2.getNextAudioBlock(bufferToFill, &deviceManager);
-//    content.track3.getNextAudioBlock(bufferToFill, &deviceManager);
-//    content.track4.getNextAudioBlock(bufferToFill, &deviceManager);
-//    content.track5.getNextAudioBlock(bufferToFill, &deviceManager);
-//    content.track6.getNextAudioBlock(bufferToFill, &deviceManager);
-//    content.track7.getNextAudioBlock(bufferToFill, &deviceManager);
-//    content.track8.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track1.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track2.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track3.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track4.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track5.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track6.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track7.getNextAudioBlock(bufferToFill, &deviceManager);
+    content.track8.getNextAudioBlock(bufferToFill, &deviceManager);
 
     
-    content.track1.processBlock( *bufferToFill.buffer , midiBuffer); // this line breaks things
+//    content.track1.processBlock( *bufferToFill.buffer , midiBuffer); // this line breaks things
     
     // For more details, see the help for AudioProcessor::getNextAudioBlock()
 //    juce::dsp::AudioBlock<float> outBuffer;
@@ -133,15 +133,16 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
 
         // Fill the required number of samples with noise between -0.125 and +0.125
         for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
-            buffer[sample] = level*( content.random.nextFloat()*content.track1.slider1.getValue()/10
-                                    +content.random.nextFloat()*content.track2.slider1.getValue()/10
-                                    +content.random.nextFloat()*content.track3.slider1.getValue()/10
-                                    +content.random.nextFloat()*content.track4.slider1.getValue()/10
-                                    +content.random.nextFloat()*content.track5.slider1.getValue()/10
-                                    +content.random.nextFloat()*content.track6.slider1.getValue()/10
-                                    +content.random.nextFloat()*content.track7.slider1.getValue()/10
-                                    +content.random.nextFloat()*content.track8.slider1.getValue()/10
-                                    );
+            buffer[sample] = level*buffer[sample];
+//            buffer[sample] = level*( content.random.nextFloat()*content.track1.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track2.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track3.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track4.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track5.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track6.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track7.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track8.slider1.getValue()/10
+//                                    );
     }
 }
     // Right now we are not producing any data, in which case we need to clear the buffer
