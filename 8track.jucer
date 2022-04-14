@@ -6,6 +6,8 @@
     <GROUP id="{6E538074-FBF1-2528-0065-2C21EA466596}" name="Source">
       <FILE id="MvZqPi" name="MainContentComponent.cpp" compile="1" resource="0"
             file="Source/MainContentComponent.cpp"/>
+      <FILE id="Ce59VR" name="Track.cpp" compile="1" resource="0" file="Source/Track.cpp"/>
+      <FILE id="jiooGU" name="Track.h" compile="0" resource="0" file="Source/Track.h"/>
       <FILE id="Mmosmo" name="MainContentComponent.h" compile="0" resource="0"
             file="Source/MainContentComponent.h"/>
       <FILE id="MrUh4o" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>

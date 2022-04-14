@@ -15,14 +15,10 @@ MainComponent::MainComponent() : audioSetupComp(deviceManager,
                                                 false)
 {
     
-//    MainContentComponent content = MainContentComponent();
-//    juce::Component content = MainContentComponent::MainContentComponent();
-//    addAndMakeVisible(header);
     addAndMakeVisible(content);
     // Make sure you set the size of the component after
     // you add any child components.
     setSize (800, 600);
-//    setSize (400, 400);
 
     // Some platforms require permissions to open input channels so request that here
     if (juce::RuntimePermissions::isRequired (juce::RuntimePermissions::recordAudio)
