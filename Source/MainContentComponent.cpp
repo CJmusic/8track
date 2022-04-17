@@ -46,7 +46,7 @@ MainContentComponent::MainContentComponent() //:
 //        track1.setButtonText ("track1");
 //        addAndMakeVisible (track1);
     
-    addAndMakeVisible (track1.createEditor());
+    addAndMakeVisible (track1);
     addAndMakeVisible (track2);
     addAndMakeVisible (track3);
     addAndMakeVisible (track4);
