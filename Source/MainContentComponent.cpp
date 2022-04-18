@@ -9,7 +9,8 @@
 
 
 
-MainContentComponent::MainContentComponent() //:
+MainContentComponent::MainContentComponent() :
+track1Editor(track1)
 //track1(),
 //track1(const TrackEditor &p),
 //track2(TrackProcessor &p),
@@ -47,6 +48,7 @@ MainContentComponent::MainContentComponent() //:
 //        addAndMakeVisible (track1);
     
     addAndMakeVisible (track1);
+    addAndMakeVisible(track1Editor);
     addAndMakeVisible (track2);
     addAndMakeVisible (track3);
     addAndMakeVisible (track4);

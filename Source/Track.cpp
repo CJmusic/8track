@@ -20,6 +20,23 @@
 // }
 
 TrackEditor::TrackEditor(TrackProcessor& p) : AudioProcessorEditor(&p), audioProcessor(p),
+slider1(*audioProcessor.apvts.getParameter("Volume")),
+lowFreqKnob1(*audioProcessor.apvts.getParameter("low Freq")),
+lowGainKnob1(*audioProcessor.apvts.getParameter("low Gain")),
+lowmidFreqKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+lowmidGainKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+lowmidQKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+highmidFreqKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+highmidGainKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+highmidQKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+highFreqKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+highGainKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+HPKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+LPKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+ThresholdKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+MakeupGainKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+ReleaseKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
+RatioKnob1(*audioProcessor.apvts.getParameter("lowmid Freq")),
 volumeSliderAttachment(audioProcessor.apvts, "Volume", slider1),
 lowFreqKnobAttachment(audioProcessor.apvts, "low Freq", lowFreqKnob1),
 lowGainKnobAttachment(audioProcessor.apvts, "low Gain", lowGainKnob1),
@@ -39,8 +56,8 @@ ReleaseKnobAttachment(audioProcessor.apvts, "Release", ReleaseKnob1),
 RatioKnobAttachment(audioProcessor.apvts, "Ratio", RatioKnob1)
 //AutoGainAttachment(audioProcessor.apvts, "HighCut Slope", AutoGain1)
 {
-    addAndMakeVisible (slider1);
-    slider1.setSliderStyle(juce::Slider::LinearVertical);
+//    addAndMakeVisible (slider1);
+//    slider1.setSliderStyle(juce::Slider::LinearVertical);
     
 //        addAndMakeVisible(knob1);
 //        knob1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
@@ -562,8 +579,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout TrackProcessor::createParame
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     
-    
-    layout.add(std::make_unique<juce::AudioParameterFloat>("Volume", "Volume", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Volume", "Volume", 0,1,0));
+//    layout.add(std::make_unique<juce::AudioParameterFloat>("Volume", "Volume", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
     layout.add(std::make_unique<juce::AudioParameterFloat>("low Freq", "low Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
     layout.add(std::make_unique<juce::AudioParameterFloat>("low Gain", "low Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
     layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Freq", "lowmid Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));

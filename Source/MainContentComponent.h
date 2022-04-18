@@ -15,6 +15,8 @@ public:
     
     
     
+    TrackEditor track1Editor;
+    
     TrackProcessor track1;
     TrackProcessor track2;
     TrackProcessor track3;

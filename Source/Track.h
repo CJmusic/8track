@@ -30,7 +30,7 @@ struct ChainSettings
 {
 //    float peakFreq{ 0 }, peakGainInDecibels{ 0 }, peakQuality{ 1.f };
 //    float lowCutFreq{ 0 }, highCutFreq { 0 };
-    float Volume{0},
+    float Volume{ 0 },
     lowFreq{0},
     lowGain{0},
     lowmidFreq{0},
@@ -94,10 +94,10 @@ struct  otherLookAndFeel : juce::LookAndFeel_V4
 
 struct RotarySliderWithLabels : juce::Slider
 {
-//  RotarySliderWithLabels(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) : juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag, juce::Slider::TextEntryBoxPosition::NoTextBox),
-//  param(&rap),
+  RotarySliderWithLabels(juce::RangedAudioParameter& rap) : juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag, juce::Slider::TextEntryBoxPosition::NoTextBox),
+  param(&rap)
 //  suffix(unitSuffix)
-    RotarySliderWithLabels()
+//    RotarySliderWithLabels()
   {
     setLookAndFeel(&lnf);
   }
@@ -139,6 +139,12 @@ struct volumeSlider : juce::Slider
 //  param(&rap),
 //  suffix(unitSuffix)
     volumeSlider()
+    {
+        setLookAndFeel(&lnf);
+    }
+
+    volumeSlider(juce::RangedAudioParameter& rap): juce::Slider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox),
+      param(&rap)
   {
     setLookAndFeel(&lnf);
   }
@@ -303,7 +309,6 @@ public:
     void resized() override;
     TrackProcessor& audioProcessor;
 
-    volumeSlider slider1;
 
 private:
     
@@ -311,6 +316,7 @@ private:
     
     juce::LookAndFeel_V4 otherLookAndFeel;
 
+    volumeSlider slider1;
     RotarySliderWithLabels lowFreqKnob1;
     RotarySliderWithLabels lowGainKnob1;
     RotarySliderWithLabels lowmidFreqKnob1;
@@ -332,23 +338,23 @@ private:
     using APVTS = juce::AudioProcessorValueTreeState;
     using Attachment = APVTS::SliderAttachment;
     
-    Attachment volumeSliderAttachment,
-    lowFreqKnobAttachment,
-    lowGainKnobAttachment,
-    lowmidFreqKnobAttachment,
-    lowmidQKnobAttachment,
-    lowmidGainKnobAttachment,
-    highmidFreqKnobAttachment,
-    highmidQKnobAttachment,
-    highmidGainKnobAttachment,
-    highFreqKnobAttachment,
-    highGainKnobAttachment,
-    HPKnobAttachment,
-    LPKnobAttachment,
-    ThresholdKnobAttachment,
-    MakeupGainKnobAttachment,
-    ReleaseKnobAttachment,
-    RatioKnobAttachment;
+    Attachment volumeSliderAttachment;
+    Attachment lowFreqKnobAttachment;
+    Attachment lowGainKnobAttachment;
+    Attachment lowmidFreqKnobAttachment;
+    Attachment lowmidQKnobAttachment;
+    Attachment lowmidGainKnobAttachment;
+    Attachment highmidFreqKnobAttachment;
+    Attachment highmidQKnobAttachment;
+    Attachment highmidGainKnobAttachment;
+    Attachment highFreqKnobAttachment;
+    Attachment highGainKnobAttachment;
+    Attachment HPKnobAttachment;
+    Attachment LPKnobAttachment;
+    Attachment ThresholdKnobAttachment;
+    Attachment MakeupGainKnobAttachment;
+    Attachment ReleaseKnobAttachment;
+    Attachment RatioKnobAttachment;
 //    AutoGainAttachment;
     
     juce::ComboBox InputSelector1;
