@@ -250,7 +250,7 @@ public:
 //    void updateFilters();
     
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
-    juce::AudioProcessorValueTreeState apvts{*this, nullptr, "PARAMETERS", createParameterLayout()};
+    juce::AudioProcessorValueTreeState apvts{*this, nullptr, "Parameters", createParameterLayout()};
 
 //    juce::AudioProcessorValueTreeState::ParameterLayout testLayout(){};
 //    juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", testLayout()};

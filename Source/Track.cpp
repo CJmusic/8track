@@ -445,8 +445,8 @@ bool TrackProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* TrackProcessor::createEditor()
 {
-//    return new TrackEditor(*this);
-     return new juce::GenericAudioProcessorEditor(*this);
+    return new TrackEditor(*this);
+//     return new juce::GenericAudioProcessorEditor(*this);
 }
 
 //==============================================================================

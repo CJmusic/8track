@@ -71,6 +71,8 @@ track8()
     addAndMakeVisible (track7);
     addAndMakeVisible (track8);
     
+    track1.createEditor();
+    
     addAndMakeVisible(track1Editor);
     addAndMakeVisible(track2Editor);
     addAndMakeVisible(track3Editor);
@@ -120,14 +122,14 @@ void MainContentComponent::resized()
 //        knob1.setBounds(track1Bounds.removeFromBottom(trackHeight/10).removeFromLeft(trackWidth/1.5));
 //        knob1.setTextBoxStyle(juce::Slider::NoTextBox, 0, 0, 0);
     
-    track1.setBounds (area.removeFromLeft (trackWidth));
-    track2.setBounds (area.removeFromLeft (trackWidth));
-    track3.setBounds (area.removeFromLeft (trackWidth));
-    track4.setBounds (area.removeFromLeft (trackWidth));
-    track5.setBounds (area.removeFromLeft (trackWidth));
-    track6.setBounds (area.removeFromLeft (trackWidth));
-    track7.setBounds (area.removeFromLeft (trackWidth));
-    track8.setBounds (area.removeFromLeft (trackWidth));
+    track1Editor.setBounds (area.removeFromLeft (trackWidth));
+    track2Editor.setBounds (area.removeFromLeft (trackWidth));
+    track3Editor.setBounds (area.removeFromLeft (trackWidth));
+    track4Editor.setBounds (area.removeFromLeft (trackWidth));
+    track5Editor.setBounds (area.removeFromLeft (trackWidth));
+    track6Editor.setBounds (area.removeFromLeft (trackWidth));
+    track7Editor.setBounds (area.removeFromLeft (trackWidth));
+    track8Editor.setBounds (area.removeFromLeft (trackWidth));
     
 //    mainArea.setBounds(area);
 //    area.removeFromBottom(headerFooterHeight);
