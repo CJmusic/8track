@@ -19,7 +19,8 @@
 ////     textLabel.setFont (textFont);
 // }
 
-TrackEditor::TrackEditor(TrackProcessor& p) : AudioProcessorEditor(&p), audioProcessor(p),
+TrackEditor::TrackEditor(TrackProcessor& p)
+: AudioProcessorEditor(&p), audioProcessor(),
 slider1(*audioProcessor.apvts.getParameter("Volume")),
 lowFreqKnob1(*audioProcessor.apvts.getParameter("low Freq")),
 lowGainKnob1(*audioProcessor.apvts.getParameter("low Gain")),
@@ -444,8 +445,8 @@ bool TrackProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* TrackProcessor::createEditor()
 {
-    return new TrackEditor(*this);
-//     return new juce::GenericAudioProcessorEditor(*this);
+//    return new TrackEditor(*this);
+     return new juce::GenericAudioProcessorEditor(*this);
 }
 
 //==============================================================================
@@ -574,22 +575,22 @@ juce::AudioProcessorValueTreeState::ParameterLayout TrackProcessor::createParame
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     
     layout.add(std::make_unique<juce::AudioParameterFloat>("Volume", "Volume", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("low Freq", "low Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("low Gain", "low Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Freq", "lowmid Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Q", "lowmid Q", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Gain", "lowmid Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("highmid Freq", "highmid Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("highmid Q", "highmid Q", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("highmid Gain", "highmid Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("high Freq", "high Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("high Gain", "high Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("HP Filter", "HP Filter", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("LP Filter", "LP Filter", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("Threshold", "Threshold", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("Makeup Gain", "Makeup Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("Release", "Release", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
-//    layout.add(std::make_unique<juce::AudioParameterFloat>("Ratio", "Ratio", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("low Freq", "low Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("low Gain", "low Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Freq", "lowmid Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Q", "lowmid Q", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Gain", "lowmid Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("highmid Freq", "highmid Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("highmid Q", "highmid Q", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("highmid Gain", "highmid Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("high Freq", "high Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("high Gain", "high Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("HP Filter", "HP Filter", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("LP Filter", "LP Filter", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Threshold", "Threshold", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Makeup Gain", "Makeup Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Release", "Release", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Ratio", "Ratio", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
       
 
     return layout;
@@ -604,3 +605,28 @@ juce::AudioProcessorValueTreeState::ParameterLayout TrackProcessor::createParame
 //}
  
 
+
+std::vector<juce::Component*> TrackEditor::getComps()
+{
+  return
+  {
+      &slider1,
+      &lowFreqKnob1,
+      &lowGainKnob1,
+      &lowmidFreqKnob1,
+      &lowmidQKnob1,
+      &lowmidGainKnob1,
+      &highmidFreqKnob1,
+      &highmidQKnob1,
+      &highmidGainKnob1,
+      &highFreqKnob1,
+      &highGainKnob1,
+      &HPKnob1,
+      &LPKnob1,
+      &ThresholdKnob1,
+      &MakeupGainKnob1,
+      &ReleaseKnob1,
+      &RatioKnob1,
+      &AutoGain1
+  };
+  }
