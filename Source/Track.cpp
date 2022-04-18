@@ -20,7 +20,7 @@
 // }
 
 TrackEditor::TrackEditor(TrackProcessor& p)
-: AudioProcessorEditor(&p), audioProcessor(),
+: AudioProcessorEditor(&p), audioProcessor(p),
 slider1(*audioProcessor.apvts.getParameter("Volume")),
 lowFreqKnob1(*audioProcessor.apvts.getParameter("low Freq")),
 lowGainKnob1(*audioProcessor.apvts.getParameter("low Gain")),

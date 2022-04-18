@@ -320,7 +320,7 @@ public:
 
 private:
     
-    TrackProcessor audioProcessor;
+    TrackProcessor& audioProcessor;
     
     juce::LookAndFeel_V4 otherLookAndFeel;
 
