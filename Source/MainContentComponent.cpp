@@ -10,7 +10,14 @@
 
 
 MainContentComponent::MainContentComponent() :
-track1Editor(track1)
+track1Editor(track1),
+track2Editor(track2),
+track3Editor(track3),
+track4Editor(track4),
+track5Editor(track5),
+track6Editor(track6),
+track7Editor(track7),
+track8Editor(track8)
 //track1(),
 //track1(const TrackEditor &p),
 //track2(TrackProcessor &p),
@@ -48,7 +55,6 @@ track1Editor(track1)
 //        addAndMakeVisible (track1);
     
     addAndMakeVisible (track1);
-    addAndMakeVisible(track1Editor);
     addAndMakeVisible (track2);
     addAndMakeVisible (track3);
     addAndMakeVisible (track4);
@@ -56,6 +62,16 @@ track1Editor(track1)
     addAndMakeVisible (track6);
     addAndMakeVisible (track7);
     addAndMakeVisible (track8);
+    
+    addAndMakeVisible(track1Editor);
+    addAndMakeVisible(track2Editor);
+    addAndMakeVisible(track3Editor);
+    addAndMakeVisible(track4Editor);
+    addAndMakeVisible(track5Editor);
+    addAndMakeVisible(track6Editor);
+    addAndMakeVisible(track7Editor);
+    addAndMakeVisible(track8Editor);
+
     
 //    track1.paint();
 

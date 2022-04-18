@@ -30,7 +30,7 @@ struct ChainSettings
 {
 //    float peakFreq{ 0 }, peakGainInDecibels{ 0 }, peakQuality{ 1.f };
 //    float lowCutFreq{ 0 }, highCutFreq { 0 };
-    float Volume{ 0 },
+    float Volume{ 0.f },
     lowFreq{0},
     lowGain{0},
     lowmidFreq{0},
@@ -59,6 +59,7 @@ enum ChainPositions
 };
 
 void updateCoefficients(Coefficients& old, const Coefficients& replacements);
+
 ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
 
 Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate);
@@ -251,6 +252,10 @@ public:
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     juce::AudioProcessorValueTreeState apvts{*this, nullptr, "Parameters", createParameterLayout()};
 
+//    juce::AudioProcessorValueTreeState::ParameterLayout testLayout(){};
+//    juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", testLayout()};
+
+
     
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
@@ -304,15 +309,18 @@ class TrackEditor : public juce::AudioProcessorEditor
 {
 public:
     TrackEditor(TrackProcessor& p);
+//    TrackEditor(TrackProcessor& );
     ~TrackEditor();
     void paint (juce::Graphics& g) override;
     void resized() override;
-    TrackProcessor& audioProcessor;
+    
+    
+//    TrackProcessor& audioProcessor;
 
 
 private:
     
-//    TrackProcessor& audioProcessor;
+    TrackProcessor& audioProcessor;
     
     juce::LookAndFeel_V4 otherLookAndFeel;
 
