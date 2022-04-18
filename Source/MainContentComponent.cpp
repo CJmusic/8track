@@ -389,14 +389,6 @@ void volumeSlider::paint(juce::Graphics &g)
     auto sliderBounds = getSliderBounds();
     auto value = getValue();
     
-//    auto sliderPos =
-    // need to make a sliderPos variable, which normalizes
-    // value into something to do with the bounds
-    // it can't change the positions of the
-    
-    
-//     g.setColour(Colours::red);
-//     g.drawRect(getLocalBounds());
      g.setColour(Colours::black);
      g.drawRect(sliderBounds);
      g.fillRect(sliderBounds);
@@ -426,6 +418,9 @@ void volumeSlider::paint(juce::Graphics &g)
     thumb.setTop(bounds.getY() + thumbHeight);
     thumb.setBottom(center.getY() - thumbHeight);
     thumb.setCentre(center.getX(), sliderBounds.getY() - value*22 + 235);
+//    thumb.setCentre(center.getX(), sliderBounds.getY() - value);
+
+//    thumb.setCentre(center.getX(), sliderBounds.getY());
     g.setColour(Colours::black);
     g.fillRect(thumb);
 

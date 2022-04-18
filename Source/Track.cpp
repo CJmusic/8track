@@ -266,7 +266,8 @@ void TrackProcessor::getNextAudioBlock(const juce::AudioSourceChannelInfo& buffe
 {
 //    return buffer;
 //    auto level = slider1.getValue()/10;
-    auto level = 1.0;
+    auto level = apvts.getParameter("Volume")->getValue();
+//    auto level = 1.0;
     auto* device = deviceManager->getCurrentAudioDevice();
     auto activeInputChannels = device->getActiveInputChannels();
     auto activeOutputChannels = device->getActiveOutputChannels();
@@ -281,7 +282,9 @@ void TrackProcessor::getNextAudioBlock(const juce::AudioSourceChannelInfo& buffe
 
         // Fill the required number of samples with noise between -0.125 and +0.125
         for (auto sample = 0; sample < bufferToFill.numSamples; ++sample){
-            buffer[sample] += (random.nextFloat()*level);
+            buffer[sample] += level*(random.nextFloat());
+//            buffer[sample] += (random.nextFloat());
+
         }
         
     }
@@ -574,7 +577,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout TrackProcessor::createParame
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     
-    layout.add(std::make_unique<juce::AudioParameterFloat>("Volume", "Volume", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("Volume", "Volume", juce::NormalisableRange<float>(0.f, 1.f, 0.01f, 1.f), 1.f));
     layout.add(std::make_unique<juce::AudioParameterFloat>("low Freq", "low Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
     layout.add(std::make_unique<juce::AudioParameterFloat>("low Gain", "low Gain", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));
     layout.add(std::make_unique<juce::AudioParameterFloat>("lowmid Freq", "lowmid Freq", juce::NormalisableRange<float>(20.f, 20000.f, 1.f, 0.25f), 20.f));

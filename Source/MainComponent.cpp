@@ -107,6 +107,7 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
 //    auto buffer6 = content.track6.getNextAudioBlock(bufferToFill, &deviceManager);
 //    auto buffer7 = content.track7.getNextAudioBlock(bufferToFill, &deviceManager);
 //    auto buffer8 = content.track8.getNextAudioBlock(bufferToFill, &deviceManager);
+    
     content.track1.getNextAudioBlock(bufferToFill, &deviceManager);
     content.track2.getNextAudioBlock(bufferToFill, &deviceManager);
     content.track3.getNextAudioBlock(bufferToFill, &deviceManager);
@@ -130,14 +131,14 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
         // Fill the required number of samples with noise between -0.125 and +0.125
         for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
             buffer[sample] = level*buffer[sample];
-//            buffer[sample] = level*( content.random.nextFloat()*content.track1.slider1.getValue()/10
-//                                    +content.random.nextFloat()*content.track2.slider1.getValue()/10
-//                                    +content.random.nextFloat()*content.track3.slider1.getValue()/10
-//                                    +content.random.nextFloat()*content.track4.slider1.getValue()/10
-//                                    +content.random.nextFloat()*content.track5.slider1.getValue()/10
-//                                    +content.random.nextFloat()*content.track6.slider1.getValue()/10
-//                                    +content.random.nextFloat()*content.track7.slider1.getValue()/10
-//                                    +content.random.nextFloat()*content.track8.slider1.getValue()/10
+//            buffer[sample] = level*( content.random.nextFloat()*content.track1Editor.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track2Editor.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track3Editor.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track4Editor.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track5Editor.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track6Editor.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track7Editor.slider1.getValue()/10
+//                                    +content.random.nextFloat()*content.track8Editor.slider1.getValue()/10
 //                                    );
     }
 }
