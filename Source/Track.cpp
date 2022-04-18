@@ -57,7 +57,7 @@ ReleaseKnobAttachment(audioProcessor.apvts, "Release", ReleaseKnob1),
 RatioKnobAttachment(audioProcessor.apvts, "Ratio", RatioKnob1)
 //AutoGainAttachment(audioProcessor.apvts, "HighCut Slope", AutoGain1)
 {
-//    addAndMakeVisible (slider1);
+    addAndMakeVisible (slider1);
 //    slider1.setSliderStyle(juce::Slider::LinearVertical);
     
 //        addAndMakeVisible(knob1);
